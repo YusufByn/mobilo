@@ -1,0 +1,100 @@
+/* Design tokens extraits de la maquette Stitch (Mobilo) */
+/* Breakpoints (non utilisables en variables dans les media queries) : 640px et 1024px */
+
+:root {
+  /* Couleurs */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f0f3ff;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  --color-text: #1e293b;
+  --color-text-muted: #475569;
+  --color-placeholder: #94a3b8;
+
+  --color-primary: #1d4ed8;
+  --color-primary-hover: #1e40af;
+  --color-primary-text: #1d4ed8;
+  --color-primary-soft: #eff6ff;
+  --color-on-primary: #ffffff;
+  --color-focus: #2563eb;
+
+  --color-error: #dc2626;
+  --color-error-soft: #fef2f2;
+  --color-success: #16a34a;
+  --color-success-soft: #f0fdf4;
+  --color-warning: #d97706;
+  --color-star: #f59e0b;
+
+  /* Typographie */
+  --font-family:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --line-height: 1.5;
+  --line-height-tight: 1.2;
+
+  /* Espacements (rythme de 4px / 8px) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Formes */
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-full: 9999px;
+
+  --shadow:
+    0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.08);
+
+  /* Mise en page */
+  --container-max: 1200px;
+  --header-height: 64px;
+  /* 44px minimum pour rester cliquable au doigt sur mobile */
+  --touch-target: 44px;
+}
+
+/* Thème sombre (bonus) : activé par ThemeContext via <html data-theme="dark"> */
+[data-theme='dark'] {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-muted: #273449;
+  --color-border: #334155;
+  --color-border-strong: #475569;
+
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-placeholder: #64748b;
+
+  /* Bouton plus foncé que le texte de lien pour garder un bon contraste avec le blanc */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-text: #93c5fd;
+  --color-primary-soft: rgba(59, 130, 246, 0.15);
+  --color-focus: #60a5fa;
+
+  --color-error: #f87171;
+  --color-error-soft: rgba(248, 113, 113, 0.12);
+  --color-success: #4ade80;
+  --color-success-soft: rgba(74, 222, 128, 0.12);
+  --color-warning: #fbbf24;
+  --color-star: #fbbf24;
+
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+}
