@@ -91,6 +91,7 @@ Respecte l'archi de la section 8 du CDC :
 
 1. Suis l'ordre de la section 14 du CDC, **une étape à la fois**. Les étapes 1 (setup) et 2 (types et config) sont faites.
 2. À la fin de chaque étape : lance les vérifications, coche les cases correspondantes dans la checklist du CDC (section 15), puis explique à l'élève en quelques phrases simples ce que tu as fait, quels hooks tu as utilisés et pourquoi. Il doit pouvoir le redire à l'oral.
-3. Ne fais aucun bonus avant que toute la checklist obligatoire soit cochée.
-4. Ne fais pas de commit : l'élève les fait lui-même.
-5. Si une exigence du CDC te semble demander une solution complexe, propose d'abord l'option la plus simple et demande.
+3. Donne-lui aussi une courte liste de choses à tester dans le navigateur (ex. « tape "iphone" puis choisis Tablettes : la liste doit être vide et afficher le message »). Une étape n'est terminée que quand ça fonctionne vraiment, pas seulement quand les vérifications passent.
+4. Ne fais aucun bonus avant que toute la checklist obligatoire soit cochée.
+5. Ne fais pas de commit : l'élève les fait lui-même.
+6. Si une exigence du CDC te semble demander une solution complexe, propose d'abord l'option la plus simple et demande.

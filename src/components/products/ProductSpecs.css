@@ -1,0 +1,19 @@
+/* Deux colonnes : libellé à gauche, valeur à droite */
+.product-specs {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-sm) var(--space-md);
+  margin: 0;
+  padding: var(--space-md);
+  font-size: var(--text-sm);
+  background-color: var(--color-surface-muted);
+  border-radius: var(--radius-sm);
+}
+
+.product-specs dt {
+  font-weight: var(--weight-semibold);
+}
+
+.product-specs dd {
+  margin: 0;
+}

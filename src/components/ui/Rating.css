@@ -1,0 +1,7 @@
+.rating {
+  white-space: nowrap;
+}
+
+.rating__star {
+  color: var(--color-star);
+}

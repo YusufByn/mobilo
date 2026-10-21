@@ -1,0 +1,26 @@
+/* Colonne pleine hauteur : le footer reste en bas même si la page est courte */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Réserve la place de la barre d'onglets fixée en bas, sinon elle cache le footer */
+  padding-bottom: var(--mobile-nav-height);
+}
+
+.layout__main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .layout {
+    padding-bottom: 0;
+  }
+
+  .layout__main {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}

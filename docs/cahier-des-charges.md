@@ -184,6 +184,7 @@ src/
 │   └── ThemeContext.tsx          (bonus)
 ├── utils/
 │   ├── filterProducts.ts
+│   ├── formatPrice.ts            // 1099.99 → « 1 099,99 $ »
 │   └── validateProduct.ts
 ├── components/
 │   ├── layout/
@@ -196,11 +197,14 @@ src/
 │   │   ├── ProductGrid.tsx
 │   │   ├── SearchForm.tsx
 │   │   ├── Pagination.tsx
+│   │   ├── ProductSpecs.tsx      // disponibilité, garantie, livraison, retours, référence
+│   │   ├── ProductReviews.tsx
 │   │   └── WishlistButton.tsx
 │   └── ui/
 │       ├── Loader.tsx
 │       ├── ErrorMessage.tsx
-│       └── EmptyState.tsx
+│       ├── EmptyState.tsx
+│       └── Rating.tsx            // « ★ 4.8 / 5 », utilisé par la carte, la fiche et les avis
 └── pages/
     ├── Home.tsx
     ├── Products.tsx
@@ -298,22 +302,23 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 
 1. ~~Setup : Vite (template `react-ts`), router, oxlint, Prettier, structure des dossiers~~ (fait)
 2. ~~Types et config (`types/`, `config/shop.ts`, `vercel.json`)~~ (fait)
-3. Service + page catalogue simple
-4. Fiche détail
-5. FiltersContext, recherche, filtres, pagination
-6. WishlistContext + page Wishlist
-7. Formulaire de création
-8. États (chargement, erreur, vide), accessibilité, responsive
-9. Bonus
-10. README final
+3. ~~Service + page catalogue simple~~ (fait)
+4. ~~Layout et navigation : `Layout` (avec le seul `<main>` de l'app), `Header`, `MobileNav`, `Footer`, page Accueil, page 404~~ (fait)
+5. ~~Fiche détail~~ (fait)
+6. FiltersContext, recherche, filtres, pagination
+7. WishlistContext + page Wishlist
+8. Formulaire de création
+9. États (chargement, erreur, vide), accessibilité, responsive
+10. Bonus
+11. README final
 
 ## 15. Checklist de conformité
 
 **Pages et navigation**
 
-- [ ] Accueil avec en-tête et navigation vers catalogue et wishlist
-- [ ] Cartes : 1 image + 3 infos minimum
-- [ ] Fiche détail : 5 infos minimum dont 2 absentes de la carte
+- [x] Accueil avec en-tête et navigation vers catalogue et wishlist
+- [x] Cartes : 1 image + 3 infos minimum
+- [x] Fiche détail : 5 infos minimum dont 2 absentes de la carte
 - [ ] Page wishlist
 - [ ] URL distinctes, navigation interne, accès direct et rechargement OK
 

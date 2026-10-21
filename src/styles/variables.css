@@ -66,6 +66,7 @@
   /* Mise en page */
   --container-max: 1200px;
   --header-height: 64px;
+  --mobile-nav-height: 64px;
   /* 44px minimum pour rester cliquable au doigt sur mobile */
   --touch-target: 44px;
 }
