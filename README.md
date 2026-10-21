@@ -42,8 +42,8 @@ L'application est disponible sur http://localhost:5173.
 Aucune variable d'environnement.
 
 - `src/config/api.ts` : URL de l'API.
-- `src/config/shop.ts` : catégories gardées et leurs libellés, seuils du filtre de prix, nombre de produits par page (6), clé du `localStorage` (`mobilo:wishlist`).
-- `vercel.json` : redirige toutes les URL vers `index.html`, pour que l'accès direct à une page et le rechargement fonctionnent.
+- `src/config/shop.ts` : catégories gardées et leurs libellés, seuils du filtre de prix, nombre de produits par page (8), clé du `localStorage` (`mobilo:wishlist`).
+- `vercel.json` : prévu pour un éventuel déploiement sur Vercel (redirige toutes les URL vers `index.html`). Inutile en local : le serveur de Vite gère déjà l'accès direct et le rechargement.
 
 ## Pages
 
@@ -110,7 +110,7 @@ Aucune autre dépendance : pas de bibliothèque de composants, d'icônes ou de r
 
 - [x] Accueil avec accès au catalogue et à la wishlist
 - [x] Navigation sur toutes les pages, avec compteur de la wishlist (en-tête sur desktop, barre d'onglets sur mobile)
-- [x] Catalogue paginé (6 produits par page) avec recherche sur le nom et la marque, filtre par catégorie et par prix max, critères combinés et bouton « Réinitialiser »
+- [x] Catalogue paginé (8 produits par page) avec recherche sur le nom et la marque, filtre par catégorie et par prix max, critères combinés et bouton « Réinitialiser »
 - [x] Fiche produit : image, description, disponibilité et stock, garantie, livraison, politique de retour, référence, avis clients
 - [x] Wishlist : ajout et retrait depuis la carte et la fiche, sans doublon, sauvegardée dans le `localStorage`
 - [x] Formulaire d'ajout de produit avec validation, indicateur d'envoi, gestion des erreurs et affichage du produit renvoyé par l'API
@@ -122,7 +122,7 @@ Aucune autre dépendance : pas de bibliothèque de composants, d'icônes ou de r
 - [x] TypeScript
 - [x] Dark mode
 - [x] Recherche avec délai (300 ms)
-- [ ] Déploiement Vercel
+- [ ] Déploiement Vercel (non réalisé)
 - [ ] CRUD complet (non prévu)
 
 ## Limites connues
@@ -141,4 +141,4 @@ Aucune autre dépendance : pas de bibliothèque de composants, d'icônes ou de r
 
 ## Déploiement
 
-Non déployé pour l'instant.
+Projet non déployé : il se lance en local (voir « Installation et lancement »).

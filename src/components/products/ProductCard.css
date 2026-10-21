@@ -1,65 +1,118 @@
-/* Colonne : le lien occupe la hauteur restante pour que toute la carte soit cliquable */
+/* Mobile : carte avec marge intérieure et image arrondie, comme sur la maquette mobile */
 .product-card {
   position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: var(--space-md);
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
+/* Colonne : le lien occupe la hauteur restante pour que toute la carte soit cliquable */
 .product-card__link {
-  display: block;
+  display: flex;
   flex: 1;
+  flex-direction: column;
   color: inherit;
   text-decoration: none;
 }
 
 .product-card__image-wrapper {
-  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Hauteur fixe : toutes les images s'alignent, quelle que soit leur forme */
+  height: var(--card-image-height);
+  padding: var(--space-md);
   background-color: var(--color-surface-muted);
+  border-radius: var(--radius);
 }
 
 .product-card__image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: contain;
 }
 
 .product-card__body {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: var(--space-xs);
-  padding: var(--space-md) var(--space-lg) var(--space-lg);
+  padding-top: var(--space-md);
 }
 
 .product-card__brand {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--color-text-soft);
 }
 
+/* Deux lignes maximum, puis « … » : toutes les cartes gardent la même hauteur de titre */
 .product-card__title {
+  display: -webkit-box;
+  overflow: hidden;
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
   line-height: var(--line-height-tight);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .product-card__rating {
+  margin-bottom: var(--space-sm);
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
+  font-weight: var(--weight-medium);
 }
 
+/* margin-top: auto pousse le prix en bas de la carte */
 .product-card__price {
-  margin-top: var(--space-sm);
+  margin-top: auto;
   padding-top: var(--space-sm);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  border-top: 1px solid var(--color-border);
+  font-variant-numeric: tabular-nums;
+}
+
+.product-card__wishlist {
+  position: absolute;
+  top: calc(var(--space-md) + var(--space-sm));
+  right: calc(var(--space-md) + var(--space-sm));
+}
+
+.product-card__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: var(--control-height);
+  margin-top: var(--space-sm);
+  font-size: var(--text-control);
+  font-weight: var(--weight-semibold);
+  color: var(--color-error);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* Corbeille dessinée en CSS : un masque SVG découpe un fond de la couleur du texte */
+.product-card__remove::before {
+  content: '';
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  background-color: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.product-card__remove:hover {
+  background-color: var(--color-error-soft);
 }
 
 /* Contour dessiné à l'intérieur : à l'extérieur, il serait coupé par l'overflow hidden de la carte */
@@ -71,23 +124,38 @@
   color: var(--color-primary-text);
 }
 
-.product-card__wishlist {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-}
+/* Tablette et desktop : carte bordée, image collée aux bords, comme sur la maquette desktop */
+@media (min-width: 640px) {
+  .product-card {
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: none;
+  }
 
-.product-card__remove {
-  min-height: var(--touch-target);
-  margin: 0 var(--space-lg) var(--space-lg);
-  font-weight: var(--weight-semibold);
-  color: var(--color-error);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-}
+  .product-card:hover {
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-md);
+  }
 
-.product-card__remove:hover {
-  background-color: var(--color-error-soft);
+  .product-card__image-wrapper {
+    border-radius: 0;
+  }
+
+  .product-card__body {
+    padding: var(--space-md);
+  }
+
+  .product-card__price {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .product-card__wishlist {
+    top: var(--space-sm);
+    right: var(--space-sm);
+  }
+
+  .product-card__remove {
+    margin: 0 var(--space-md) var(--space-md);
+  }
 }

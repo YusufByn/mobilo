@@ -1,26 +1,23 @@
-/* Mobile : les 3 éléments ne tiennent pas sur une ligne, « Page x / y » passe au-dessus */
+/* Mobile : boutons en simples liens texte, comme sur la maquette mobile */
 .pagination {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
 }
 
 .pagination__button {
-  flex: 1;
-  min-height: var(--touch-target);
-  padding: 0 var(--space-md);
+  min-height: var(--control-height);
+  padding: 0 var(--space-sm);
+  font-size: var(--text-control);
   font-weight: var(--weight-semibold);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
+  color: var(--color-primary-text);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
   cursor: pointer;
-}
-
-.pagination__button:hover:not(:disabled) {
-  background-color: var(--color-surface-muted);
 }
 
 .pagination__button:disabled {
@@ -29,24 +26,41 @@
 }
 
 .pagination__status {
-  order: -1;
-  width: 100%;
-  text-align: center;
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-sm);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  background-color: var(--color-surface-muted);
-  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  border-radius: var(--radius);
 }
 
 @media (min-width: 640px) {
+  .pagination {
+    gap: var(--space-md);
+  }
+
   .pagination__button {
-    flex: 0 1 auto;
+    padding: 0 var(--space-md);
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+  }
+
+  .pagination__button:hover:not(:disabled) {
+    background-color: var(--color-surface-muted);
+    border-color: var(--color-border-strong);
+  }
+
+  .pagination__button:disabled {
+    color: var(--color-placeholder);
   }
 
   .pagination__status {
-    order: 0;
-    width: auto;
+    padding: var(--space-xs) var(--space-md);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
   }
 }

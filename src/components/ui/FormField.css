@@ -5,11 +5,12 @@
 }
 
 .form-field__label {
-  font-size: var(--text-sm);
+  font-size: var(--text-control);
   font-weight: var(--weight-semibold);
 }
 
 .form-field__required {
+  font-weight: var(--weight-bold);
   color: var(--color-error);
 }
 
@@ -18,22 +19,34 @@
 .form-field select,
 .form-field textarea {
   width: 100%;
-  min-height: var(--touch-target);
-  padding: var(--space-sm) var(--space-md);
+  min-height: var(--control-height);
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--text-control);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border-input);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
 }
 
 .form-field textarea {
+  padding: var(--space-sm) var(--space-md);
   resize: vertical;
 }
 
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--color-primary);
+}
+
+/* Contour rouge de 2px (bordure + ombre) sur un champ en erreur, comme sur la maquette */
 .form-field [aria-invalid='true'] {
   border-color: var(--color-error);
+  box-shadow: 0 0 0 1px var(--color-error);
 }
 
 .form-field__error {
   font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
   color: var(--color-error);
 }

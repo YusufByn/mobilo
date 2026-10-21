@@ -1,2 +1,4 @@
 dist
 package-lock.json
+# Exports Stitch, gardés tels quels comme référence
+docs/maquettes

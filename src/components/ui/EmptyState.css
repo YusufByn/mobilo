@@ -2,14 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--space-md);
-  padding: var(--space-2xl) var(--space-md);
+  min-height: var(--state-min-height);
+  padding: var(--space-lg);
   text-align: center;
-  border: 2px dashed var(--color-border-strong);
+  background-color: var(--color-surface);
+  border: 2px dashed var(--color-border);
   border-radius: var(--radius);
 }
 
 .empty-state__message {
-  font-size: var(--text-lg);
+  max-width: 20rem;
+  font-size: var(--text-md);
   font-weight: var(--weight-semibold);
 }

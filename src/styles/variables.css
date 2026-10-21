@@ -1,51 +1,71 @@
-/* Design tokens extraits de la maquette Stitch (Mobilo) */
-/* Breakpoints (non utilisables en variables dans les media queries) : 640px et 1024px */
+/* Design tokens repris des maquettes Stitch (docs/maquettes/html et DESIGN.md) */
+/* Breakpoints (non utilisables en variables dans les media queries) : 640px, 768px (grille) et 1024px */
 
 :root {
   /* Contrôles natifs (listes déroulantes, barres de défilement) aux couleurs du thème */
   color-scheme: light;
 
   /* Couleurs */
-  --color-bg: #f8fafc;
+  --color-bg: #f9f9ff;
   --color-surface: #ffffff;
   --color-surface-muted: #f0f3ff;
-  --color-border: #e2e8f0;
-  --color-border-strong: #cbd5e1;
+  --color-border: #c4c5d7;
+  --color-border-strong: #747686;
   /* Contour des champs : 3:1 minimum sur la surface pour qu'on les repère (WCAG 1.4.11) */
-  --color-border-input: #64748b;
+  --color-border-input: #747686;
 
-  --color-text: #1e293b;
-  --color-text-muted: #475569;
+  --color-text: #111c2d;
+  --color-text-muted: #434655;
+  /* Marques, métadonnées : un cran plus clair que --color-text-muted */
+  --color-text-soft: #565e74;
   /* 4,5:1 sur la surface : un placeholder trop pâle devient illisible */
-  --color-placeholder: #64748b;
+  --color-placeholder: #6e7081;
 
   --color-primary: #1d4ed8;
-  --color-primary-hover: #1e40af;
-  --color-primary-text: #1d4ed8;
-  --color-primary-soft: #eff6ff;
+  --color-primary-hover: #0037b0;
+  --color-primary-text: #0037b0;
   --color-on-primary: #ffffff;
   --color-focus: #2563eb;
 
-  /* Plus foncé que le rouge de la maquette : 4,5:1 aussi sur --color-error-soft */
-  --color-error: #b91c1c;
+  /* Pastille du compteur de la wishlist */
+  --color-badge: #dae2fd;
+  --color-badge-text: #131b2e;
+
+  /* Rouge de la maquette (#ba1a1a) : 4,5:1 aussi sur --color-error-soft */
+  --color-error: #ba1a1a;
   --color-error-soft: #fef2f2;
+  --color-error-border: #e3a3a3;
+  --color-error-hover: #93000a;
+  --color-on-error: #ffffff;
   --color-success: #16a34a;
   --color-success-soft: #f0fdf4;
+  /* Vert foncé de la maquette pour le texte : le vert vif n'est pas assez contrasté */
+  --color-success-text: #166534;
   --color-warning: #d97706;
+  /* Plus foncé que l'ambre de la maquette : 3:1 minimum pour une icône */
   --color-star: #d97706;
-  --color-wishlist: #e11d48;
+  --color-wishlist: #ba1a1a;
+
+  /* Barre d'onglets mobile légèrement transparente, comme sur la maquette */
+  --color-nav-bg: rgba(249, 249, 255, 0.92);
 
   /* Typographie */
   --font-family:
     'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
+  /* 11px : marques en majuscules sur les cartes */
+  --text-2xs: 0.6875rem;
   --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-md: 1rem;
+  /* 13px : texte secondaire (compteurs, caractéristiques, footer) */
+  --text-sm: 0.8125rem;
+  /* 14px : champs, boutons et liens de navigation */
+  --text-control: 0.875rem;
+  /* 15px : texte courant */
+  --text-md: 0.9375rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.75rem;
 
   --weight-regular: 400;
   --weight-medium: 500;
@@ -54,6 +74,11 @@
 
   --line-height: 1.5;
   --line-height-tight: 1.2;
+  --line-height-relaxed: 1.625;
+
+  /* Titres resserrés, petites capitales espacées (marques) */
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.05em;
 
   /* Espacements (rythme de 4px / 8px) */
   --space-xs: 0.25rem;
@@ -66,47 +91,88 @@
   /* Formes */
   --radius-sm: 6px;
   --radius: 8px;
+  --radius-lg: 12px;
   --radius-full: 9999px;
 
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
   --shadow:
     0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.08);
+  --shadow-md:
+    0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -2px rgba(15, 23, 42, 0.1);
+  --shadow-bar: 0 1px 8px rgba(15, 23, 42, 0.06);
 
   /* Mise en page */
   --container-max: 1200px;
-  --header-height: 64px;
+  --header-height: 60px;
   --mobile-nav-height: 64px;
   /* 44px minimum pour rester cliquable au doigt sur mobile */
   --touch-target: 44px;
+  /* Hauteur des champs et boutons : 44px sur mobile, 40px dès 640px (voir plus bas) */
+  --control-height: var(--touch-target);
+  --heart-size: var(--touch-target);
+  --loader-size: 2.5rem;
+  --icon-size: 1.25rem;
+  --icon-size-sm: 1.125rem;
+  /* Hauteur commune des encadrés d'état (chargement, erreur, vide) */
+  --state-min-height: 11.25rem;
+  --grid-gap: 1.25rem;
+  --card-image-height: 11.25rem;
+  --detail-image-max-height: 22.5rem;
+}
+
+/* Au-delà du mobile, on vise la souris : contrôles plus compacts, comme sur la maquette */
+@media (min-width: 640px) {
+  :root {
+    --control-height: 40px;
+    --heart-size: 32px;
+  }
 }
 
 /* Thème sombre (bonus) : activé par ThemeContext via <html data-theme="dark"> */
+/* Gris neutres quasi noirs (sans teinte bleue) : 3 niveaux, fond < surface < surface-muted */
 [data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-muted: #273449;
-  --color-border: #334155;
-  --color-border-strong: #475569;
+  --color-bg: #09090b;
+  --color-surface: #141416;
+  --color-surface-muted: #1d1d21;
+  --color-border: #27272a;
+  --color-border-strong: #52525b;
+  /* 3,5:1 sur la surface : les champs restent repérables */
+  --color-border-input: #6b6b75;
 
-  --color-text: #f1f5f9;
-  --color-text-muted: #94a3b8;
-  --color-placeholder: #94a3b8;
+  --color-text: #fafafa;
+  --color-text-muted: #c8c8cf;
+  --color-text-soft: #a1a1aa;
+  --color-placeholder: #8b8b94;
 
   /* Bouton plus foncé que le texte de lien pour garder un bon contraste avec le blanc */
   --color-primary: #2563eb;
   --color-primary-hover: #1d4ed8;
-  --color-primary-text: #93c5fd;
-  --color-primary-soft: rgba(59, 130, 246, 0.15);
+  --color-primary-text: #60a5fa;
   --color-focus: #60a5fa;
 
-  --color-error: #fca5a5;
-  --color-error-soft: rgba(248, 113, 113, 0.12);
-  --color-success: #4ade80;
-  --color-success-soft: rgba(74, 222, 128, 0.12);
-  --color-warning: #fbbf24;
+  --color-badge: #27272a;
+  --color-badge-text: #e4e4e7;
+
+  --color-error: #f87171;
+  --color-error-soft: rgba(248, 113, 113, 0.1);
+  --color-error-border: rgba(248, 113, 113, 0.35);
+  --color-error-hover: #fca5a5;
+  /* Texte foncé sur le rouge clair du thème sombre : le blanc n'y serait pas lisible */
+  --color-on-error: #1c0606;
+  --color-success: #22c55e;
+  --color-success-soft: rgba(34, 197, 94, 0.1);
+  --color-success-text: #4ade80;
+  --color-warning: #f59e0b;
   --color-star: #fbbf24;
   --color-wishlist: #fb7185;
 
-  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --color-nav-bg: rgba(20, 20, 22, 0.92);
+
+  /* Sur un fond presque noir, les ombres se voient peu : les bordures font le relief */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.6);
+  --shadow-bar: 0 1px 8px rgba(0, 0, 0, 0.6);
 }

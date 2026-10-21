@@ -1,6 +1,10 @@
+/* Fixé en haut comme sur la maquette : la navigation reste à portée en faisant défiler */
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-bar);
 }
 
 .header__inner {
@@ -15,8 +19,9 @@
 }
 
 .header__logo {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
   color: var(--color-primary-text);
   text-decoration: none;
 }
@@ -29,11 +34,16 @@
 .header__link {
   display: flex;
   align-items: center;
-  min-height: var(--touch-target);
-  padding: 0 var(--space-sm);
-  font-weight: var(--weight-medium);
+  min-height: var(--control-height);
+  padding: 0 var(--space-xs);
+  font-size: var(--text-control);
+  font-weight: var(--weight-semibold);
   color: var(--color-text-muted);
   text-decoration: none;
+}
+
+.header__link:hover {
+  color: var(--color-text);
 }
 
 .header__count {
@@ -41,37 +51,56 @@
   padding: 0 var(--space-sm);
   font-size: var(--text-xs);
   font-weight: var(--weight-semibold);
-  color: var(--color-primary-text);
-  background-color: var(--color-primary-soft);
+  color: var(--color-badge-text);
+  background-color: var(--color-badge);
   border-radius: var(--radius-full);
-}
-
-.header__link:hover {
-  color: var(--color-text);
-}
-
-/* NavLink ajoute lui-même aria-current="page" sur le lien de la page affichée */
-.header__link[aria-current='page'] {
-  font-weight: var(--weight-semibold);
-  color: var(--color-primary-text);
 }
 
 .header__link--button {
   margin-left: auto;
   padding: 0 var(--space-md);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.header__link--button:hover {
+  background-color: var(--color-surface-muted);
+}
+
+/* NavLink ajoute lui-même aria-current="page" sur le lien de la page affichée */
+.header__link[aria-current='page'] {
+  font-weight: var(--weight-bold);
+  color: var(--color-primary-text);
 }
 
 @media (min-width: 640px) {
+  /* Desktop : filet sous l'en-tête, dessiné en ombre pour ne pas ajouter 1px aux 60px */
+  .header {
+    box-shadow: 0 1px 0 var(--color-border);
+  }
+
   .header__inner {
     padding: 0 var(--space-lg);
+  }
+
+  .header__logo {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
   }
 
   .header__nav {
     display: flex;
     flex: 1;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__inner {
+    padding: 0 var(--space-xl);
   }
 }

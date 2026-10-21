@@ -80,14 +80,17 @@ export default function ProductDetail() {
         </div>
 
         <div className="product-detail__info">
-          <p className="product-detail__brand">{product.brand}</p>
-          <div className="product-detail__heading">
-            <h1 className="product-detail__title">{product.title}</h1>
-            <WishlistButton product={product} />
+          {/* Wrapper de mise en page : marque, titre et note restent groupés */}
+          <div className="product-detail__summary">
+            <p className="product-detail__brand">{product.brand}</p>
+            <div className="product-detail__heading">
+              <h1 className="product-detail__title">{product.title}</h1>
+              <WishlistButton product={product} />
+            </div>
+            <Rating value={product.rating} />
           </div>
-          <Rating value={product.rating} />
           <p className="product-detail__price">{formatPrice(product.price)}</p>
-          <p>{product.description}</p>
+          <p className="product-detail__description">{product.description}</p>
           <ProductSpecs product={product} />
         </div>
       </div>

@@ -292,7 +292,7 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 - [x] Projet en TypeScript
 - [x] Dark mode partagé par contexte et sauvegardé dans le `localStorage`
 - [x] Recherche déclenchée 300 ms après la dernière frappe (`useRef` pour le timer)
-- [ ] Déploiement Vercel
+- [ ] Déploiement Vercel (non réalisé, choix de l'élève)
 - [ ] CRUD complet (si le temps le permet : modification `PUT` + suppression `DELETE` avec confirmation)
 
 ## 13. Limites connues
@@ -363,5 +363,5 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 
 - [x] Linter (oxlint) + Prettier configurés, lint et format OK
 - [x] `npm run typecheck` sans erreur
-- [ ] README complet (sujet, API, installation, config, choix techniques, fonctionnalités, bonus, limites, usage de l'IA, lien Vercel)
+- [x] README complet (sujet, API, installation, config, choix techniques, fonctionnalités, bonus, limites, usage de l'IA ; pas de lien Vercel, projet non déployé)
 - [ ] Dépôt GitHub rendu sur Cesar

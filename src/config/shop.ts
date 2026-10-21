@@ -10,7 +10,7 @@ export const SHOP_CATEGORIES: { value: ProductCategory; label: string }[] = [
 // Seuils proposés dans le filtre "Prix max", en dollars
 export const PRICE_OPTIONS = [50, 100, 300, 500, 1000]
 
-export const PRODUCTS_PER_PAGE = 6
+export const PRODUCTS_PER_PAGE = 8
 
 // Délai entre la dernière frappe et le filtrage, en millisecondes
 export const SEARCH_DELAY = 300

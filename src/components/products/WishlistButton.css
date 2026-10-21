@@ -3,24 +3,24 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: var(--touch-target);
-  height: var(--touch-target);
+  width: var(--heart-size);
+  height: var(--heart-size);
   padding: 0;
-  color: var(--color-text-muted);
+  color: var(--color-text-soft);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
-  box-shadow: var(--shadow);
   cursor: pointer;
 }
 
 .wishlist-button:hover {
   color: var(--color-wishlist);
+  border-color: var(--color-wishlist);
 }
 
 .wishlist-button__icon {
-  width: var(--space-lg);
-  height: var(--space-lg);
+  width: var(--icon-size);
+  height: var(--icon-size);
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -30,6 +30,7 @@
 /* Cœur plein quand le produit est dans la wishlist, piloté par le même attribut que les lecteurs d'écran */
 .wishlist-button[aria-pressed='true'] {
   color: var(--color-wishlist);
+  box-shadow: var(--shadow-sm);
 }
 
 .wishlist-button[aria-pressed='true'] .wishlist-button__icon {

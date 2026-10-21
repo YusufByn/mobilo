@@ -8,9 +8,14 @@
   align-self: flex-start;
   display: flex;
   align-items: center;
-  min-height: var(--touch-target);
-  font-weight: var(--weight-medium);
+  min-height: var(--control-height);
+  font-size: var(--text-control);
+  font-weight: var(--weight-semibold);
   text-decoration: none;
+}
+
+.product-detail__back:hover {
+  text-decoration: underline;
 }
 
 .product-detail__layout {
@@ -19,15 +24,18 @@
   gap: var(--space-lg);
 }
 
-.product-detail__image-wrapper {
+/* Image et informations dans deux cartes blanches arrondies, comme sur la maquette */
+.product-detail__image-wrapper,
+.product-detail__info {
   padding: var(--space-lg);
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 .product-detail__image {
   width: 100%;
+  max-height: var(--detail-image-max-height);
   aspect-ratio: 1 / 1;
   object-fit: contain;
 }
@@ -38,11 +46,18 @@
   gap: var(--space-md);
 }
 
+.product-detail__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
 .product-detail__brand {
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--color-text-soft);
 }
 
 .product-detail__heading {
@@ -54,16 +69,24 @@
 
 .product-detail__title {
   font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   line-height: var(--line-height-tight);
+  letter-spacing: var(--tracking-tight);
 }
 
 .product-detail__price {
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs) var(--space-md);
   font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
-  background-color: var(--color-primary-soft);
-  border-radius: var(--radius-sm);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-tight);
+  background-color: var(--color-surface-muted);
+  border-radius: var(--radius);
+}
+
+.product-detail__description {
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
 }
 
 .product-detail__not-found {
@@ -76,12 +99,15 @@
 }
 
 @media (min-width: 640px) {
+  .product-detail__title {
+    font-size: var(--text-3xl);
+  }
+}
+
+/* Deux colonnes à partir du desktop seulement, comme la grille de la maquette */
+@media (min-width: 1024px) {
   .product-detail__layout {
     grid-template-columns: 1fr 1fr;
     align-items: start;
-  }
-
-  .product-detail__title {
-    font-size: var(--text-3xl);
   }
 }

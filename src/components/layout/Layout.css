@@ -21,6 +21,12 @@
   }
 
   .layout__main {
-    padding: var(--space-xl) var(--space-lg);
+    padding: var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout__main {
+    padding: var(--space-lg) var(--space-xl);
   }
 }

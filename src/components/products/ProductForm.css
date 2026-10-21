@@ -1,18 +1,18 @@
 .product-form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   padding: var(--space-lg);
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-/* Prix et stock côte à côte à partir de la tablette */
+/* Prix et stock l'un sous l'autre, comme tous les champs de la maquette */
 .product-form__row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 .product-form__error {
@@ -20,18 +20,21 @@
   font-weight: var(--weight-semibold);
   color: var(--color-error);
   background-color: var(--color-error-soft);
-  border: 1px solid var(--color-error);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-error-border);
+  border-radius: var(--radius);
 }
 
 .product-form__submit {
-  min-height: var(--touch-target);
+  min-height: var(--control-height);
+  margin-top: var(--space-sm);
   padding: 0 var(--space-lg);
+  font-size: var(--text-control);
   font-weight: var(--weight-semibold);
   color: var(--color-on-primary);
   background-color: var(--color-primary);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
 }
 
@@ -40,21 +43,18 @@
 }
 
 .product-form__submit:disabled {
-  opacity: 0.6;
-  cursor: wait;
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .product-form__note {
+  margin-top: calc(-1 * var(--space-sm));
   font-size: var(--text-xs);
-  color: var(--color-text-muted);
+  color: var(--color-text-soft);
 }
 
 @media (min-width: 640px) {
   .product-form {
-    padding: var(--space-xl);
-  }
-
-  .product-form__row {
-    grid-template-columns: 1fr 1fr;
+    padding: var(--space-lg);
   }
 }

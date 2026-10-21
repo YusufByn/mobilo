@@ -8,15 +8,26 @@
   margin: 0 auto;
   padding: var(--space-lg) var(--space-md);
   font-size: var(--text-sm);
+  text-align: center;
   color: var(--color-text-muted);
 }
 
 .footer__inner strong {
+  margin-right: var(--space-xs);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
   color: var(--color-text);
 }
 
 @media (min-width: 640px) {
   .footer__inner {
     padding: var(--space-lg);
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__inner {
+    padding: var(--space-lg) var(--space-xl);
   }
 }
