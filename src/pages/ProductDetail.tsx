@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import ProductReviews from '../components/products/ProductReviews'
 import ProductSpecs from '../components/products/ProductSpecs'
+import WishlistButton from '../components/products/WishlistButton'
 import ErrorMessage from '../components/ui/ErrorMessage'
 import Loader from '../components/ui/Loader'
 import Rating from '../components/ui/Rating'
@@ -77,7 +78,10 @@ export default function ProductDetail() {
 
         <div className="product-detail__info">
           <p className="product-detail__brand">{product.brand}</p>
-          <h1 className="product-detail__title">{product.title}</h1>
+          <div className="product-detail__heading">
+            <h1 className="product-detail__title">{product.title}</h1>
+            <WishlistButton product={product} />
+          </div>
           <Rating value={product.rating} />
           <p className="product-detail__price">{formatPrice(product.price)}</p>
           <p>{product.description}</p>

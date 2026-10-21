@@ -25,3 +25,17 @@
     font-size: var(--text-3xl);
   }
 }
+
+.products__reset {
+  min-height: var(--touch-target);
+  padding: 0 var(--space-lg);
+  font-weight: var(--weight-semibold);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.products__reset:hover {
+  background-color: var(--color-surface-muted);
+}

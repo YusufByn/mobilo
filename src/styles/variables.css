@@ -26,6 +26,7 @@
   --color-success-soft: #f0fdf4;
   --color-warning: #d97706;
   --color-star: #f59e0b;
+  --color-wishlist: #e11d48;
 
   /* Typographie */
   --font-family:
@@ -96,6 +97,7 @@
   --color-success-soft: rgba(74, 222, 128, 0.12);
   --color-warning: #fbbf24;
   --color-star: #fbbf24;
+  --color-wishlist: #fb7185;
 
   --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
 }

@@ -305,8 +305,8 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 3. ~~Service + page catalogue simple~~ (fait)
 4. ~~Layout et navigation : `Layout` (avec le seul `<main>` de l'app), `Header`, `MobileNav`, `Footer`, page Accueil, page 404~~ (fait)
 5. ~~Fiche détail~~ (fait)
-6. FiltersContext, recherche, filtres, pagination
-7. WishlistContext + page Wishlist
+6. ~~FiltersContext, recherche, filtres, pagination~~ (fait)
+7. ~~WishlistContext + page Wishlist~~ (fait)
 8. Formulaire de création
 9. États (chargement, erreur, vide), accessibilité, responsive
 10. Bonus
@@ -319,24 +319,24 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 - [x] Accueil avec en-tête et navigation vers catalogue et wishlist
 - [x] Cartes : 1 image + 3 infos minimum
 - [x] Fiche détail : 5 infos minimum dont 2 absentes de la carte
-- [ ] Page wishlist
+- [x] Page wishlist
 - [ ] URL distinctes, navigation interne, accès direct et rechargement OK
 
 **Recherche, filtres, pagination**
 
-- [ ] Pagination avec commandes et page courante
-- [ ] Champ de recherche stylisé + 2 filtres
-- [ ] Critères combinés
-- [ ] Pagination appliquée aux résultats filtrés, filtrage sur l'ensemble des données
-- [ ] Retour page 1 à chaque modification
-- [ ] Critères conservés dans un contexte
+- [x] Pagination avec commandes et page courante
+- [x] Champ de recherche stylisé + 2 filtres
+- [x] Critères combinés
+- [x] Pagination appliquée aux résultats filtrés, filtrage sur l'ensemble des données
+- [x] Retour page 1 à chaque modification
+- [x] Critères conservés dans un contexte
 
 **Wishlist**
 
-- [ ] Ajout / retrait
-- [ ] Pas de doublon
-- [ ] Persistance `localStorage`
-- [ ] Page wishlist : accès aux fiches + retrait
+- [x] Ajout / retrait
+- [x] Pas de doublon
+- [x] Persistance `localStorage`
+- [x] Page wishlist : accès aux fiches + retrait
 
 **Création**
 
@@ -352,7 +352,7 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 - [ ] Responsive sans débordement
 - [ ] Indicateur de chargement
 - [ ] Erreur compréhensible + réessai
-- [ ] Messages listes vides
+- [x] Messages listes vides
 - [ ] Labels, alt, clavier, focus visible
 
 **Qualité et livrables**

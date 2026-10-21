@@ -36,6 +36,16 @@
   text-decoration: none;
 }
 
+.header__count {
+  margin-left: var(--space-xs);
+  padding: 0 var(--space-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-full);
+}
+
 .header__link:hover {
   color: var(--color-text);
 }

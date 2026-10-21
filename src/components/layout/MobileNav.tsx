@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router'
+import { useWishlist } from '../../context/WishlistContext'
 import './MobileNav.css'
 
 export default function MobileNav() {
+  const { items } = useWishlist()
+
   return (
     <nav className="mobile-nav" aria-label="Navigation principale">
       <NavLink to="/" className="mobile-nav__link">
@@ -26,13 +29,18 @@ export default function MobileNav() {
         Catalogue
       </NavLink>
       <NavLink to="/wishlist" className="mobile-nav__link">
-        <svg
-          className="mobile-nav__icon"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z" />
-        </svg>
+        <span className="mobile-nav__icon-wrapper">
+          <svg
+            className="mobile-nav__icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z" />
+          </svg>
+          {items.length > 0 && (
+            <span className="mobile-nav__count">{items.length}</span>
+          )}
+        </span>
         Wishlist
       </NavLink>
       <NavLink to="/create" className="mobile-nav__link">

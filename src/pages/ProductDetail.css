@@ -45,6 +45,13 @@
   letter-spacing: 0.05em;
 }
 
+.product-detail__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
 .product-detail__title {
   font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
