@@ -1,0 +1,22 @@
+/* Formulaire étroit et centré : plus lisible qu'en pleine largeur */
+.create-product {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.create-product__title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.create-product__intro {
+  margin: var(--space-sm) 0 var(--space-lg);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 640px) {
+  .create-product__title {
+    font-size: var(--text-3xl);
+  }
+}

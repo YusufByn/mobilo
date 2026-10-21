@@ -62,6 +62,11 @@
   border-top: 1px solid var(--color-border);
 }
 
+/* Contour dessiné à l'intérieur : à l'extérieur, il serait coupé par l'overflow hidden de la carte */
+.product-card__link:focus-visible {
+  outline-offset: calc(-1 * var(--space-xs));
+}
+
 .product-card__link:hover .product-card__title {
   color: var(--color-primary-text);
 }

@@ -21,7 +21,8 @@ export default function Pagination({
       >
         ← Précédent
       </button>
-      <p className="pagination__status">
+      {/* aria-live : le changement de page est annoncé par les lecteurs d'écran */}
+      <p className="pagination__status" aria-live="polite">
         Page {page} / {pageCount}
       </p>
       <button

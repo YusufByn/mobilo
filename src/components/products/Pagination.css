@@ -1,5 +1,7 @@
+/* Mobile : les 3 éléments ne tiennent pas sur une ligne, « Page x / y » passe au-dessus */
 .pagination {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
@@ -7,6 +9,7 @@
 }
 
 .pagination__button {
+  flex: 1;
   min-height: var(--touch-target);
   padding: 0 var(--space-md);
   font-weight: var(--weight-semibold);
@@ -26,10 +29,24 @@
 }
 
 .pagination__status {
+  order: -1;
+  width: 100%;
+  text-align: center;
   padding: var(--space-sm) var(--space-md);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   white-space: nowrap;
   background-color: var(--color-surface-muted);
   border-radius: var(--radius-sm);
+}
+
+@media (min-width: 640px) {
+  .pagination__button {
+    flex: 0 1 auto;
+  }
+
+  .pagination__status {
+    order: 0;
+    width: auto;
+  }
 }

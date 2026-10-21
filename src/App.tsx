@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import Layout from './components/layout/Layout'
 import { FiltersProvider } from './context/FiltersContext'
 import { WishlistProvider } from './context/WishlistContext'
+import CreateProduct from './pages/CreateProduct'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/ProductDetail'
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/create" element={<CreateProduct />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

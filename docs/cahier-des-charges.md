@@ -199,11 +199,14 @@ src/
 │   │   ├── Pagination.tsx
 │   │   ├── ProductSpecs.tsx      // disponibilité, garantie, livraison, retours, référence
 │   │   ├── ProductReviews.tsx
+│   │   ├── ProductForm.tsx       // les 6 champs du formulaire de création
+│   │   ├── CreatedProductSummary.tsx  // confirmation avec la réponse de l'API
 │   │   └── WishlistButton.tsx
 │   └── ui/
 │       ├── Loader.tsx
 │       ├── ErrorMessage.tsx
 │       ├── EmptyState.tsx
+│       ├── FormField.tsx         // label + champ + erreur, reliés par htmlFor et aria-describedby
 │       └── Rating.tsx            // « ★ 4.8 / 5 », utilisé par la carte, la fiche et les avis
 └── pages/
     ├── Home.tsx
@@ -260,7 +263,7 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 - Lecture du `localStorage` : `JSON.parse` dans un `try/catch`, tableau vide en cas de contenu absent ou invalide.
 - Formulaire : valeurs gardées en `string` pendant la saisie, converties seulement au moment de l'envoi.
 - `useParams()` renvoie `string | undefined` : conversion de l'id avec `Number()` et vérification avant l'appel API.
-- Événements typés : `ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>`, `FormEvent<HTMLFormElement>`.
+- Événements typés : `ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>`, `SubmitEvent<HTMLFormElement>` (`FormEvent` est déprécié dans les types React 19.3).
 - Pas de `any` dans le code (règle oxlint `typescript/no-explicit-any` en `error`).
 
 ### Scripts
@@ -307,8 +310,8 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 5. ~~Fiche détail~~ (fait)
 6. ~~FiltersContext, recherche, filtres, pagination~~ (fait)
 7. ~~WishlistContext + page Wishlist~~ (fait)
-8. Formulaire de création
-9. États (chargement, erreur, vide), accessibilité, responsive
+8. ~~Formulaire de création~~ (fait)
+9. ~~États (chargement, erreur, vide), accessibilité, responsive~~ (fait)
 10. Bonus
 11. README final
 
@@ -320,7 +323,7 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 - [x] Cartes : 1 image + 3 infos minimum
 - [x] Fiche détail : 5 infos minimum dont 2 absentes de la carte
 - [x] Page wishlist
-- [ ] URL distinctes, navigation interne, accès direct et rechargement OK
+- [x] URL distinctes, navigation interne, accès direct et rechargement OK
 
 **Recherche, filtres, pagination**
 
@@ -340,24 +343,24 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 
 **Création**
 
-- [ ] Formulaire accessible depuis l'app, champs contrôlés
-- [ ] Validation avec messages clairs
-- [ ] `POST` JSON + header `Content-Type`
-- [ ] Indicateur d'envoi + bouton désactivé
-- [ ] Vérification `response.ok`, erreur + réessai sans perte
-- [ ] Confirmation + données renvoyées par l'API
+- [x] Formulaire accessible depuis l'app, champs contrôlés
+- [x] Validation avec messages clairs
+- [x] `POST` JSON + header `Content-Type`
+- [x] Indicateur d'envoi + bouton désactivé
+- [x] Vérification `response.ok`, erreur + réessai sans perte
+- [x] Confirmation + données renvoyées par l'API
 
 **Interface**
 
-- [ ] Responsive sans débordement
-- [ ] Indicateur de chargement
-- [ ] Erreur compréhensible + réessai
+- [x] Responsive sans débordement
+- [x] Indicateur de chargement
+- [x] Erreur compréhensible + réessai
 - [x] Messages listes vides
-- [ ] Labels, alt, clavier, focus visible
+- [x] Labels, alt, clavier, focus visible
 
 **Qualité et livrables**
 
-- [ ] Linter (oxlint) + Prettier configurés, lint et format OK
-- [ ] `npm run typecheck` sans erreur
+- [x] Linter (oxlint) + Prettier configurés, lint et format OK
+- [x] `npm run typecheck` sans erreur
 - [ ] README complet (sujet, API, installation, config, choix techniques, fonctionnalités, bonus, limites, usage de l'IA, lien Vercel)
 - [ ] Dépôt GitHub rendu sur Cesar

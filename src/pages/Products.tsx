@@ -59,8 +59,9 @@ export default function Products() {
     <>
       <div className="products__header">
         <h1 className="products__title">Catalogue</h1>
+        {/* aria-live : le nouveau nombre de résultats est annoncé à chaque filtre */}
         {showResults && (
-          <p className="products__count">
+          <p className="products__count" aria-live="polite">
             {filteredProducts.length}{' '}
             {filteredProducts.length > 1
               ? 'modèles disponibles'
