@@ -4,6 +4,7 @@ import './NotFound.css'
 export default function NotFound() {
   return (
     <section className="not-found">
+      <title>Page introuvable · Mobilo</title>
       <h1 className="not-found__title">Page introuvable</h1>
       <p className="not-found__text">
         L'adresse demandée ne correspond à aucune page de Mobilo.

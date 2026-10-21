@@ -9,6 +9,7 @@ export default function Wishlist() {
 
   return (
     <>
+      <title>Ma wishlist · Mobilo</title>
       <div className="wishlist__header">
         <h1 className="wishlist__title">Ma wishlist</h1>
         {items.length > 0 && (

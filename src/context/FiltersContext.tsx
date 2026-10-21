@@ -1,8 +1,17 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react'
+import { SEARCH_DELAY } from '../config/shop'
 import type { Filters } from '../types/filters'
 
 interface FiltersContextValue {
   filters: Filters
+  // Texte affiché dans le champ : filters.search ne le rattrape que 300 ms après la dernière frappe
+  searchInput: string
   setSearch: (search: string) => void
   setCategory: (category: string) => void
   setMaxPrice: (maxPrice: number | null) => void
@@ -26,10 +35,19 @@ interface FiltersProviderProps {
 
 export function FiltersProvider({ children }: FiltersProviderProps) {
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS)
+  const [searchInput, setSearchInput] = useState('')
+  // useRef et pas useState : l'id du minuteur doit être gardé entre les rendus sans en provoquer
+  const searchTimer = useRef<number | undefined>(undefined)
 
   // Chaque changement de critère ramène à la page 1 : l'ancienne page peut ne plus exister
   function setSearch(search: string) {
-    setFilters({ ...filters, search, page: 1 })
+    setSearchInput(search)
+    // Une nouvelle frappe annule le minuteur précédent : on filtre 300 ms après la dernière
+    clearTimeout(searchTimer.current)
+    searchTimer.current = setTimeout(() => {
+      // Mise à jour à partir de la valeur actuelle : un filtre a pu changer pendant les 300 ms
+      setFilters((current) => ({ ...current, search, page: 1 }))
+    }, SEARCH_DELAY)
   }
 
   function setCategory(category: string) {
@@ -45,6 +63,8 @@ export function FiltersProvider({ children }: FiltersProviderProps) {
   }
 
   function resetFilters() {
+    clearTimeout(searchTimer.current)
+    setSearchInput('')
     setFilters(DEFAULT_FILTERS)
   }
 
@@ -52,6 +72,7 @@ export function FiltersProvider({ children }: FiltersProviderProps) {
     <FiltersContext
       value={{
         filters,
+        searchInput,
         setSearch,
         setCategory,
         setMaxPrice,

@@ -4,6 +4,8 @@ import './Home.css'
 export default function Home() {
   return (
     <section className="home">
+      {/* React 19 déplace tout seul cette balise dans le <head> de la page */}
+      <title>Mobilo · Boutique de téléphonie</title>
       <h1 className="home__title">Les meilleurs smartphones, simplement.</h1>
       <p className="home__text">
         Smartphones, tablettes et accessoires des plus grandes marques, réunis

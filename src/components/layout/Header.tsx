@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router'
 import { useWishlist } from '../../context/WishlistContext'
+import ThemeToggle from './ThemeToggle'
 import './Header.css'
 
 export default function Header() {
@@ -28,6 +29,8 @@ export default function Header() {
             Ajouter un produit
           </NavLink>
         </nav>
+        {/* Hors de la nav : la nav est masquée sur mobile, le bouton doit rester visible */}
+        <ThemeToggle />
       </div>
     </header>
   )

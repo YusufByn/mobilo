@@ -191,6 +191,7 @@ src/
 │   │   ├── Layout.tsx
 │   │   ├── Header.tsx
 │   │   ├── MobileNav.tsx         // barre d'onglets en bas (mobile)
+│   │   ├── ThemeToggle.tsx       // bouton clair / sombre (bonus)
 │   │   └── Footer.tsx
 │   ├── products/
 │   │   ├── ProductCard.tsx
@@ -289,8 +290,8 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 ## 12. Bonus prévus
 
 - [x] Projet en TypeScript
-- [ ] Dark mode partagé par contexte et sauvegardé dans le `localStorage`
-- [ ] Recherche déclenchée 300 ms après la dernière frappe (`useRef` pour le timer)
+- [x] Dark mode partagé par contexte et sauvegardé dans le `localStorage`
+- [x] Recherche déclenchée 300 ms après la dernière frappe (`useRef` pour le timer)
 - [ ] Déploiement Vercel
 - [ ] CRUD complet (si le temps le permet : modification `PUT` + suppression `DELETE` avec confirmation)
 

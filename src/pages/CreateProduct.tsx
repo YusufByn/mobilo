@@ -77,6 +77,7 @@ export default function CreateProduct() {
 
   return (
     <div className="create-product">
+      <title>Ajouter un produit · Mobilo</title>
       <h1 className="create-product__title">Ajouter un produit</h1>
       <p className="create-product__intro">
         Remplissez les informations ci-dessous pour proposer un nouveau produit.

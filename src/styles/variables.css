@@ -2,6 +2,9 @@
 /* Breakpoints (non utilisables en variables dans les media queries) : 640px et 1024px */
 
 :root {
+  /* Contrôles natifs (listes déroulantes, barres de défilement) aux couleurs du thème */
+  color-scheme: light;
+
   /* Couleurs */
   --color-bg: #f8fafc;
   --color-surface: #ffffff;
@@ -78,6 +81,8 @@
 
 /* Thème sombre (bonus) : activé par ThemeContext via <html data-theme="dark"> */
 [data-theme='dark'] {
+  color-scheme: dark;
+
   --color-bg: #0f172a;
   --color-surface: #1e293b;
   --color-surface-muted: #273449;

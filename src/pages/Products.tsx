@@ -57,6 +57,7 @@ export default function Products() {
 
   return (
     <>
+      <title>Catalogue · Mobilo</title>
       <div className="products__header">
         <h1 className="products__title">Catalogue</h1>
         {/* aria-live : le nouveau nombre de résultats est annoncé à chaque filtre */}

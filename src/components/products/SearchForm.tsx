@@ -3,8 +3,14 @@ import { useFilters } from '../../context/FiltersContext'
 import './SearchForm.css'
 
 export default function SearchForm() {
-  const { filters, setSearch, setCategory, setMaxPrice, resetFilters } =
-    useFilters()
+  const {
+    filters,
+    searchInput,
+    setSearch,
+    setCategory,
+    setMaxPrice,
+    resetFilters,
+  } = useFilters()
 
   return (
     <div className="search-form" role="search">
@@ -17,7 +23,7 @@ export default function SearchForm() {
           type="search"
           className="search-form__input"
           placeholder="Rechercher un modèle ou une marque…"
-          value={filters.search}
+          value={searchInput}
           onChange={(event) => setSearch(event.target.value)}
         />
       </div>
