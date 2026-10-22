@@ -1,60 +1,47 @@
 .product-form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--space-lg);
-  background-color: var(--color-surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  gap: var(--space-lg);
 }
 
-/* Prix et stock l'un sous l'autre, comme tous les champs de la maquette */
+/* Prix et stock l'un sous l'autre, comme tous les champs */
 .product-form__row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-lg);
 }
 
 .product-form__error {
   padding: var(--space-md);
   font-weight: var(--weight-semibold);
   color: var(--color-error);
-  background-color: var(--color-error-soft);
-  border: 1px solid var(--color-error-border);
-  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  border: var(--border) solid var(--color-error);
+  border-radius: var(--radius-field);
 }
 
 .product-form__submit {
   min-height: var(--control-height);
-  margin-top: var(--space-sm);
   padding: 0 var(--space-lg);
-  font-size: var(--text-control);
   font-weight: var(--weight-semibold);
-  color: var(--color-on-primary);
-  background-color: var(--color-primary);
+  color: var(--color-on-button);
+  background-color: var(--color-button);
   border: none;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-pill);
   cursor: pointer;
 }
 
 .product-form__submit:hover:not(:disabled) {
-  background-color: var(--color-primary-hover);
+  background-color: var(--color-button-hover);
 }
 
 .product-form__submit:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
 .product-form__note {
   margin-top: calc(-1 * var(--space-sm));
-  font-size: var(--text-xs);
-  color: var(--color-text-soft);
-}
-
-@media (min-width: 640px) {
-  .product-form {
-    padding: var(--space-lg);
-  }
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
 }

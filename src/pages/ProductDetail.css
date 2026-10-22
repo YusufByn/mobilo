@@ -1,7 +1,7 @@
 .product-detail {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
 }
 
 .product-detail__back {
@@ -9,28 +9,25 @@
   display: flex;
   align-items: center;
   min-height: var(--control-height);
-  font-size: var(--text-control);
   font-weight: var(--weight-semibold);
-  text-decoration: none;
-}
-
-.product-detail__back:hover {
-  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .product-detail__layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
 }
 
-/* Image et informations dans deux cartes blanches arrondies, comme sur la maquette */
-.product-detail__image-wrapper,
-.product-detail__info {
+/* Grand cadre à contour noir : la photo est l'autre héros de la fiche, avec le prix */
+.product-detail__image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--space-lg);
-  background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  background-color: var(--color-image-bg);
+  border: var(--border) solid var(--color-line);
+  border-radius: var(--radius-card);
 }
 
 .product-detail__image {
@@ -43,21 +40,19 @@
 .product-detail__info {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  align-items: flex-start;
+  gap: var(--space-lg);
 }
 
 .product-detail__summary {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  width: 100%;
 }
 
 .product-detail__brand {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--color-text-soft);
+  color: var(--color-text-muted);
 }
 
 .product-detail__heading {
@@ -69,45 +64,76 @@
 
 .product-detail__title {
   font-size: var(--text-2xl);
-  font-weight: var(--weight-semibold);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--tracking-tight);
 }
 
+/* La grande étiquette de prix, même dessin que sur les cartes */
 .product-detail__price {
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
+  font-stretch: var(--stretch-product);
+  font-weight: var(--weight-black);
   font-variant-numeric: tabular-nums;
-  letter-spacing: var(--tracking-tight);
-  background-color: var(--color-surface-muted);
-  border-radius: var(--radius);
+  line-height: var(--leading-display);
+  color: var(--color-on-tag);
+  background-color: var(--color-tag);
+  border: var(--border) solid var(--color-on-tag);
+  border-radius: var(--radius-tag);
+}
+
+.product-detail__stock {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-success);
+}
+
+.product-detail__stock::before {
+  content: '';
+  width: var(--space-sm);
+  height: var(--space-sm);
+  background-color: currentColor;
+  border-radius: var(--radius-pill);
+}
+
+/* Valeurs exactes renvoyées par l'API (en anglais) */
+.product-detail__stock[data-status='Low Stock'] {
+  color: var(--color-warning);
+}
+
+.product-detail__stock[data-status='Out of Stock'] {
+  color: var(--color-error);
 }
 
 .product-detail__description {
-  line-height: var(--line-height-relaxed);
+  max-width: var(--measure);
   color: var(--color-text-muted);
 }
 
 .product-detail__not-found {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-md);
   padding: var(--space-2xl) 0;
-  text-align: center;
 }
 
 @media (min-width: 640px) {
+  .product-detail__image-wrapper {
+    padding: var(--space-xl);
+  }
+
   .product-detail__title {
     font-size: var(--text-3xl);
   }
 }
 
-/* Deux colonnes à partir du desktop seulement, comme la grille de la maquette */
+/* Deux colonnes : le cadre photo à gauche, les informations à droite */
 @media (min-width: 1024px) {
   .product-detail__layout {
     grid-template-columns: 1fr 1fr;
     align-items: start;
+    gap: var(--space-2xl);
   }
 }

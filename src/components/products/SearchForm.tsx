@@ -18,17 +18,14 @@ export default function SearchForm() {
         <label htmlFor="search" className="search-form__label">
           Recherche
         </label>
-        {/* Wrapper pour placer la loupe dessinée en CSS dans le champ */}
-        <div className="search-form__search">
-          <input
-            id="search"
-            type="search"
-            className="search-form__input"
-            placeholder="Rechercher un modèle ou une marque…"
-            value={searchInput}
-            onChange={(event) => setSearch(event.target.value)}
-          />
-        </div>
+        <input
+          id="search"
+          type="search"
+          className="search-form__input"
+          placeholder="Rechercher un modèle ou une marque…"
+          value={searchInput}
+          onChange={(event) => setSearch(event.target.value)}
+        />
       </div>
 
       <div className="search-form__field">

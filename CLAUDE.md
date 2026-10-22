@@ -70,7 +70,7 @@ Respecte l'archi de la section 8 du CDC :
 - Noms de classes en kebab-case, préfixés par le composant : `.product-card`, `.product-card__title`.
 - **Toujours les variables** de `src/styles/variables.css` : aucune couleur, taille de police ou espacement en dur.
 - Mobile d'abord, puis `@media (min-width: 640px)` et `@media (min-width: 1024px)`.
-- Pas d'animation sauf le spinner de chargement.
+- Mouvement uniquement en réponse à une action (survol, clic) et le spinner de chargement. Aucune animation d'apparition. Tout est coupé sous `prefers-reduced-motion`.
 
 ## Accessibilité (exigée par la consigne)
 

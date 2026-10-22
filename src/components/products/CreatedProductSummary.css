@@ -1,26 +1,28 @@
+/* Succès : cadre au contour vert, même forme que les cartes */
 .created-product {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
-  padding: var(--space-md) var(--space-lg);
-  background-color: var(--color-success-soft);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: var(--border) solid var(--color-success);
+  border-radius: var(--radius-card);
 }
 
-/* Vert foncé : le vert vif sur fond vert clair ne serait pas assez contrasté */
 .created-product__title {
-  font-weight: var(--weight-semibold);
-  color: var(--color-success-text);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-stretch: var(--stretch-product);
+  font-weight: var(--weight-bold);
+  color: var(--color-success);
 }
 
 .created-product__details {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--space-xs) var(--space-md);
+  gap: var(--space-xs) var(--space-lg);
   margin: 0;
-  font-size: var(--text-sm);
 }
 
 .created-product__details dt {
@@ -30,9 +32,10 @@
 .created-product__details dd {
   margin: 0;
   overflow-wrap: anywhere;
+  color: var(--color-text-muted);
 }
 
 .created-product__note {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
 }

@@ -17,6 +17,7 @@ interface FiltersContextValue {
   setMaxPrice: (maxPrice: number | null) => void
   setPage: (page: number) => void
   resetFilters: () => void
+  showCategory: (category: string) => void
 }
 
 const DEFAULT_FILTERS: Filters = {
@@ -68,6 +69,14 @@ export function FiltersProvider({ children }: FiltersProviderProps) {
     setFilters(DEFAULT_FILTERS)
   }
 
+  // Tuiles de l'accueil : resetFilters() puis setCategory() ne marcherait pas,
+  // setCategory repartirait de l'ancien filters et remettrait l'ancienne recherche
+  function showCategory(category: string) {
+    clearTimeout(searchTimer.current)
+    setSearchInput('')
+    setFilters({ ...DEFAULT_FILTERS, category })
+  }
+
   return (
     <FiltersContext
       value={{
@@ -78,6 +87,7 @@ export function FiltersProvider({ children }: FiltersProviderProps) {
         setMaxPrice,
         setPage,
         resetFilters,
+        showCategory,
       }}
     >
       {children}

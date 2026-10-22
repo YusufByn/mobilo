@@ -1,84 +1,84 @@
-/* Design tokens repris des maquettes Stitch (docs/maquettes/html et DESIGN.md) */
-/* Breakpoints (non utilisables en variables dans les media queries) : 640px, 768px (grille) et 1024px */
+/* Direction « l'ardoise des prix » : le prix en grands chiffres serrés, une couleur par rayon */
+/* Breakpoints (non utilisables en variables dans les media queries) : 640px, 768px et 1024px */
 
 :root {
   /* Contrôles natifs (listes déroulantes, barres de défilement) aux couleurs du thème */
   color-scheme: light;
 
-  /* Couleurs */
-  --color-bg: #f9f9ff;
+  /* Neutres */
+  --color-bg: #f7f6f2;
   --color-surface: #ffffff;
-  --color-surface-muted: #f0f3ff;
-  --color-border: #c4c5d7;
-  --color-border-strong: #747686;
-  /* Contour des champs : 3:1 minimum sur la surface pour qu'on les repère (WCAG 1.4.11) */
-  --color-border-input: #747686;
+  --color-text: #000000;
+  --color-text-muted: #5c5b57;
+  /* Filets fins : séparation des lignes du catalogue, header, tableaux */
+  --color-line-soft: #dcdad3;
+  --color-line: #000000;
+  /* Contour des champs : 3:1 minimum sur le blanc pour qu'on les repère */
+  --color-field-border: #7a7973;
+  --color-image-bg: transparent;
 
-  --color-text: #111c2d;
-  --color-text-muted: #434655;
-  /* Marques, métadonnées : un cran plus clair que --color-text-muted */
-  --color-text-soft: #565e74;
-  /* 4,5:1 sur la surface : un placeholder trop pâle devient illisible */
-  --color-placeholder: #6e7081;
+  /* Couleurs des rayons, avec la couleur de texte lisible dessus */
+  --color-cat-smartphones: #2238ff;
+  --color-on-cat-smartphones: #ffffff;
+  /* Texte noir sur la tomate : le blanc n'y atteint que 3,35:1 */
+  --color-cat-tablets: #ff4a2b;
+  --color-on-cat-tablets: #000000;
+  --color-cat-accessories: #17b890;
+  --color-on-cat-accessories: #000000;
 
-  --color-primary: #1d4ed8;
-  --color-primary-hover: #0037b0;
-  --color-primary-text: #0037b0;
-  --color-on-primary: #ffffff;
-  --color-focus: #2563eb;
+  /* Couleur d'accent par défaut (aucun rayon choisi) : le cobalt des smartphones */
+  --accent: var(--color-cat-smartphones);
+  --on-accent: var(--color-on-cat-smartphones);
 
-  /* Pastille du compteur de la wishlist */
-  --color-badge: #dae2fd;
-  --color-badge-text: #131b2e;
+  --color-action: #2238ff;
+  --color-action-fill: #2238ff;
+  --color-button: #000000;
+  --color-button-hover: #2238ff;
+  --color-on-button: #ffffff;
+  /* Compteur de la wishlist : pastille noire */
+  --color-count: #000000;
+  --color-on-count: #ffffff;
+  --color-tag: #000000;
+  --color-on-tag: #ffffff;
 
-  /* Rouge de la maquette (#ba1a1a) : 4,5:1 aussi sur --color-error-soft */
-  --color-error: #ba1a1a;
-  --color-error-soft: #fef2f2;
-  --color-error-border: #e3a3a3;
-  --color-error-hover: #93000a;
-  --color-on-error: #ffffff;
-  --color-success: #16a34a;
-  --color-success-soft: #f0fdf4;
-  /* Vert foncé de la maquette pour le texte : le vert vif n'est pas assez contrasté */
-  --color-success-text: #166534;
-  --color-warning: #d97706;
-  /* Plus foncé que l'ambre de la maquette : 3:1 minimum pour une icône */
-  --color-star: #d97706;
-  --color-wishlist: #ba1a1a;
+  --color-error: #d1242f;
+  --color-success: #1a7f37;
+  /* Stock faible : ambre foncé, 4,5:1 sur le blanc */
+  --color-warning: #8a5a00;
+  --color-footer: transparent;
+  --color-on-footer: #000000;
+  --color-footer-muted: #5c5b57;
+  --color-shadow: #000000;
 
-  /* Barre d'onglets mobile légèrement transparente, comme sur la maquette */
-  --color-nav-bg: rgba(249, 249, 255, 0.92);
+  /* Typographie : Archivo (axe de largeur) pour les chiffres et le logo, Hanken Grotesk pour le reste */
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-text:
+    'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Condensé : les prix se lisent comme sur une ardoise, grands et serrés */
+  --stretch-condensed: 62.5%;
+  --stretch-product: 100%;
+  --stretch-display: 125%;
 
-  /* Typographie */
-  --font-family:
-    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-
-  /* 11px : marques en majuscules sur les cartes */
-  --text-2xs: 0.6875rem;
-  --text-xs: 0.75rem;
-  /* 13px : texte secondaire (compteurs, caractéristiques, footer) */
-  --text-sm: 0.8125rem;
-  /* 14px : champs, boutons et liens de navigation */
-  --text-control: 0.875rem;
-  /* 15px : texte courant */
-  --text-md: 0.9375rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
   --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.75rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.75rem;
+  /* Chiffres de prix : ligne du catalogue, tuile de l'accueil, fiche */
+  --text-price: 2.25rem;
+  --text-price-lg: 4.5rem;
+  --text-hero: 4rem;
 
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+  --weight-black: 800;
 
-  --line-height: 1.5;
-  --line-height-tight: 1.2;
-  --line-height-relaxed: 1.625;
-
-  /* Titres resserrés, petites capitales espacées (marques) */
+  --leading: 1.5;
+  --leading-display: 1.1;
   --tracking-tight: -0.02em;
-  --tracking-wide: 0.05em;
 
   /* Espacements (rythme de 4px / 8px) */
   --space-xs: 0.25rem;
@@ -87,92 +87,85 @@
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
+  --space-3xl: 4rem;
 
   /* Formes */
-  --radius-sm: 6px;
-  --radius: 8px;
-  --radius-lg: 12px;
-  --radius-full: 9999px;
-
-  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow:
-    0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.08);
-  --shadow-md:
-    0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -2px rgba(15, 23, 42, 0.1);
-  --shadow-bar: 0 1px 8px rgba(15, 23, 42, 0.06);
+  --border: 2px;
+  --hairline: 1px;
+  --radius-tag: 6px;
+  --radius-field: 10px;
+  --radius-card: 14px;
+  --radius-tile: 24px;
+  --radius-pill: 999px;
+  --shadow-hover: 4px 4px 0 var(--color-shadow);
+  /* Durée commune des réponses au survol et au clic */
+  --duration: 0.2s;
 
   /* Mise en page */
   --container-max: 1200px;
-  --header-height: 60px;
+  --header-height: 64px;
   --mobile-nav-height: 64px;
-  /* 44px minimum pour rester cliquable au doigt sur mobile */
-  --touch-target: 44px;
-  /* Hauteur des champs et boutons : 44px sur mobile, 40px dès 640px (voir plus bas) */
-  --control-height: var(--touch-target);
-  --heart-size: var(--touch-target);
-  --loader-size: 2.5rem;
+  /* 44px : cliquable au doigt, et même hauteur pour tous les champs et boutons */
+  --control-height: 44px;
   --icon-size: 1.25rem;
-  --icon-size-sm: 1.125rem;
-  /* Hauteur commune des encadrés d'état (chargement, erreur, vide) */
-  --state-min-height: 11.25rem;
-  --grid-gap: 1.25rem;
-  --card-image-height: 11.25rem;
-  --detail-image-max-height: 22.5rem;
-}
-
-/* Au-delà du mobile, on vise la souris : contrôles plus compacts, comme sur la maquette */
-@media (min-width: 640px) {
-  :root {
-    --control-height: 40px;
-    --heart-size: 32px;
-  }
+  --loader-size: 2.5rem;
+  --card-image-height: 13.75rem;
+  --row-image-size: 5.5rem;
+  --detail-image-max-height: 28rem;
+  /* Largeur de lecture confortable pour les paragraphes */
+  --measure: 65ch;
+  --form-width: 36rem;
 }
 
 /* Thème sombre (bonus) : activé par ThemeContext via <html data-theme="dark"> */
-/* Gris neutres quasi noirs (sans teinte bleue) : 3 niveaux, fond < surface < surface-muted */
 [data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #09090b;
-  --color-surface: #141416;
-  --color-surface-muted: #1d1d21;
-  --color-border: #27272a;
-  --color-border-strong: #52525b;
-  /* 3,5:1 sur la surface : les champs restent repérables */
-  --color-border-input: #6b6b75;
+  --color-bg: #111113;
+  --color-surface: #1b1b1e;
+  --color-text: #f3f2ee;
+  --color-text-muted: #a6a49d;
+  --color-line-soft: #2e2e33;
+  --color-line: #3a3a40;
+  --color-field-border: #7a7973;
+  /* Photos sur fond clair : un produit noir disparaîtrait sur le fond sombre */
+  --color-image-bg: #f3f2ee;
 
-  --color-text: #fafafa;
-  --color-text-muted: #c8c8cf;
-  --color-text-soft: #a1a1aa;
-  --color-placeholder: #8b8b94;
+  --color-cat-smartphones: #4057ff;
+  --color-cat-tablets: #ff6a4d;
+  --color-cat-accessories: #2fd1a6;
 
-  /* Bouton plus foncé que le texte de lien pour garder un bon contraste avec le blanc */
-  --color-primary: #2563eb;
-  --color-primary-hover: #1d4ed8;
-  --color-primary-text: #60a5fa;
-  --color-focus: #60a5fa;
+  --color-action: #8c99ff;
+  --color-action-fill: #4057ff;
+  /* Un bouton noir disparaîtrait sur ce fond : le bouton principal passe en clair */
+  --color-button: #f3f2ee;
+  --color-button-hover: #8c99ff;
+  --color-on-button: #000000;
+  --color-count: #f3f2ee;
+  --color-on-count: #000000;
+  --color-tag: #f3f2ee;
+  --color-on-tag: #000000;
 
-  --color-badge: #27272a;
-  --color-badge-text: #e4e4e7;
+  --color-error: #ff6b6b;
+  --color-success: #4cc38a;
+  --color-warning: #e3b341;
+  --color-on-footer: #f3f2ee;
+  --color-footer-muted: #a6a49d;
+  --color-shadow: #4057ff;
+}
 
-  --color-error: #f87171;
-  --color-error-soft: rgba(248, 113, 113, 0.1);
-  --color-error-border: rgba(248, 113, 113, 0.35);
-  --color-error-hover: #fca5a5;
-  /* Texte foncé sur le rouge clair du thème sombre : le blanc n'y serait pas lisible */
-  --color-on-error: #1c0606;
-  --color-success: #22c55e;
-  --color-success-soft: rgba(34, 197, 94, 0.1);
-  --color-success-text: #4ade80;
-  --color-warning: #f59e0b;
-  --color-star: #fbbf24;
-  --color-wishlist: #fb7185;
+/* Chaque rayon impose sa couleur à tout ce qui porte data-category (page catalogue, fiche, tuile) */
+[data-category='smartphones'] {
+  --accent: var(--color-cat-smartphones);
+  --on-accent: var(--color-on-cat-smartphones);
+}
 
-  --color-nav-bg: rgba(20, 20, 22, 0.92);
+[data-category='tablets'] {
+  --accent: var(--color-cat-tablets);
+  --on-accent: var(--color-on-cat-tablets);
+}
 
-  /* Sur un fond presque noir, les ombres se voient peu : les bordures font le relief */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.6);
-  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.6);
-  --shadow-bar: 0 1px 8px rgba(0, 0, 0, 0.6);
+[data-category='mobile-accessories'] {
+  --accent: var(--color-cat-accessories);
+  --on-accent: var(--color-on-cat-accessories);
 }

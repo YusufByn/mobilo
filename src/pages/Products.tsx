@@ -5,7 +5,7 @@ import SearchForm from '../components/products/SearchForm'
 import EmptyState from '../components/ui/EmptyState'
 import ErrorMessage from '../components/ui/ErrorMessage'
 import Loader from '../components/ui/Loader'
-import { PRODUCTS_PER_PAGE } from '../config/shop'
+import { PRODUCTS_PER_PAGE, SHOP_CATEGORIES } from '../config/shop'
 import { useFilters } from '../context/FiltersContext'
 import { getProducts } from '../services/productService'
 import type { Product } from '../types/product'
@@ -54,12 +54,16 @@ export default function Products() {
   const start = (filters.page - 1) * PRODUCTS_PER_PAGE
   const pageProducts = filteredProducts.slice(start, start + PRODUCTS_PER_PAGE)
   const showResults = !loading && !error
+  const category = SHOP_CATEGORIES.find((c) => c.value === filters.category)
 
+  // data-category : la couleur de la catégorie choisie colore toute la page (variables.css)
   return (
-    <>
-      <title>Catalogue · Mobilo</title>
+    <div className="products" data-category={filters.category}>
+      <title>Catalogue | Mobilo</title>
       <div className="products__header">
-        <h1 className="products__title">Catalogue</h1>
+        <h1 className="products__title">
+          {category ? category.label : 'Tout le catalogue'}
+        </h1>
         {/* aria-live : le nouveau nombre de résultats est annoncé à chaque filtre */}
         {showResults && (
           <p className="products__count" aria-live="polite">
@@ -97,6 +101,6 @@ export default function Products() {
           onPageChange={handlePageChange}
         />
       )}
-    </>
+    </div>
   )
 }

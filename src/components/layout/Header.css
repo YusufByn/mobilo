@@ -1,10 +1,10 @@
-/* Fixé en haut comme sur la maquette : la navigation reste à portée en faisant défiler */
+/* Fixé en haut : la navigation reste à portée en faisant défiler */
 .header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: var(--color-surface);
-  box-shadow: var(--shadow-bar);
+  background-color: var(--color-bg);
+  border-bottom: var(--hairline) solid var(--color-line-soft);
 }
 
 .header__inner {
@@ -18,11 +18,14 @@
   padding: 0 var(--space-md);
 }
 
+/* Le texte reste « Mobilo » pour les lecteurs d'écran, la minuscule est purement visuelle */
 .header__logo {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-primary-text);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-stretch: var(--stretch-display);
+  font-weight: var(--weight-black);
+  text-transform: lowercase;
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -35,67 +38,67 @@
   display: flex;
   align-items: center;
   min-height: var(--control-height);
-  padding: 0 var(--space-xs);
-  font-size: var(--text-control);
-  font-weight: var(--weight-semibold);
-  color: var(--color-text-muted);
+  padding: 0 var(--space-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
   text-decoration: none;
+  transition: color var(--duration);
 }
 
 .header__link:hover {
-  color: var(--color-text);
+  color: var(--color-action);
+}
+
+/* NavLink ajoute lui-même aria-current="page" sur le lien de la page affichée */
+/* Barre en ombre interne plutôt qu'un soulignement, qui se propagerait sous la pastille */
+.header__link[aria-current='page'] {
+  color: var(--color-action);
+  box-shadow: inset 0 calc(-1 * var(--border)) 0 var(--color-action);
 }
 
 .header__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--space-lg);
+  height: var(--space-lg);
   margin-left: var(--space-xs);
-  padding: 0 var(--space-sm);
-  font-size: var(--text-xs);
+  padding: 0 var(--space-xs);
+  font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: var(--color-badge-text);
-  background-color: var(--color-badge);
-  border-radius: var(--radius-full);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-on-count);
+  background-color: var(--color-count);
+  border-radius: var(--radius-pill);
 }
 
 .header__link--button {
   margin-left: auto;
-  padding: 0 var(--space-md);
-  color: var(--color-text);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  padding: 0 var(--space-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-on-button);
+  background-color: var(--color-button);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--duration);
 }
 
-.header__link--button:hover {
-  background-color: var(--color-surface-muted);
-}
-
-/* NavLink ajoute lui-même aria-current="page" sur le lien de la page affichée */
-.header__link[aria-current='page'] {
-  font-weight: var(--weight-bold);
-  color: var(--color-primary-text);
+.header__link--button:hover,
+.header__link--button[aria-current='page'] {
+  color: var(--color-on-button);
+  background-color: var(--color-button-hover);
+  box-shadow: none;
 }
 
 @media (min-width: 640px) {
-  /* Desktop : filet sous l'en-tête, dessiné en ombre pour ne pas ajouter 1px aux 60px */
-  .header {
-    box-shadow: 0 1px 0 var(--color-border);
-  }
-
   .header__inner {
     padding: 0 var(--space-lg);
-  }
-
-  .header__logo {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
-    color: var(--color-text);
   }
 
   .header__nav {
     display: flex;
     flex: 1;
     align-items: center;
-    gap: var(--space-lg);
+    gap: var(--space-md);
   }
 }
 

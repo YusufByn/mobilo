@@ -1,80 +1,107 @@
-/* Accroche centrée sur toute la hauteur de l'écran, comme sur la maquette */
 .home {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-md);
-  min-height: calc(
-    100vh - var(--header-height) - var(--mobile-nav-height) - 2 *
-      var(--space-lg)
-  );
-  text-align: center;
+  gap: var(--space-lg);
+}
+
+/* Pas de slogan : une ligne qui dit ce qu'on vend, et on entre tout de suite dans les rayons */
+.home__intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-md);
 }
 
 .home__title {
-  max-width: 48rem;
+  font-size: var(--text-xl);
+}
+
+.home__all {
+  font-weight: var(--weight-semibold);
+  text-underline-offset: 4px;
+}
+
+.home__categories {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Une tuile = un aplat de la couleur du rayon, la photo détourée en grand, le prix de départ */
+.home__tile {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  min-height: 24rem;
+  padding: var(--space-lg);
+  color: var(--on-accent);
+  text-decoration: none;
+  background-color: var(--accent);
+  border-radius: var(--radius-tile);
+}
+
+.home__tile:focus-visible {
+  outline-offset: 4px;
+}
+
+.home__tile-name {
   font-size: var(--text-2xl);
   font-weight: var(--weight-semibold);
-  line-height: var(--line-height-tight);
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-tight);
 }
 
-.home__text {
-  max-width: 36rem;
-  font-size: var(--text-md);
-  color: var(--color-text-muted);
+.home__tile-image {
+  align-self: center;
+  justify-self: center;
+  width: 80%;
+  max-height: 16rem;
+  object-fit: contain;
+  transition: transform var(--duration) ease-out;
 }
 
-.home__actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  width: 100%;
-  margin-top: var(--space-md);
+/* Réponse au survol : la photo s'avance légèrement */
+.home__tile:hover .home__tile-image {
+  transform: translateY(calc(-1 * var(--space-sm))) scale(1.05);
 }
 
-.home__link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: var(--control-height);
-  padding: 0 var(--space-lg);
-  font-size: var(--text-control);
+.home__tile-price {
+  font-family: var(--font-display);
+  font-size: var(--text-price-lg);
+  font-stretch: var(--stretch-condensed);
+  font-weight: var(--weight-black);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.home__tile-from {
+  font-family: var(--font-text);
+  font-size: var(--text-lg);
+  font-stretch: normal;
   font-weight: var(--weight-semibold);
-  color: var(--color-text-muted);
-  text-decoration: none;
-  background-color: var(--color-surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-}
-
-.home__link:hover {
-  color: var(--color-text);
-  background-color: var(--color-surface-muted);
-}
-
-.home__link--primary {
-  color: var(--color-on-primary);
-  background-color: var(--color-primary);
-}
-
-.home__link--primary:hover {
-  color: var(--color-on-primary);
-  background-color: var(--color-primary-hover);
 }
 
 @media (min-width: 640px) {
-  .home {
-    min-height: calc(100vh - var(--header-height) - 2 * var(--space-lg));
-  }
-
   .home__title {
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
+  }
+}
+
+/* Desktop : les trois rayons côte à côte, les smartphones (16 produits sur 33) un peu plus larges */
+@media (min-width: 1024px) {
+  .home__categories {
+    grid-template-columns: 1.4fr 1fr 1fr;
   }
 
-  .home__actions {
-    flex-direction: row;
-    justify-content: center;
+  .home__tile {
+    min-height: 34rem;
+  }
+
+  .home__tile-image {
+    max-height: 22rem;
   }
 }

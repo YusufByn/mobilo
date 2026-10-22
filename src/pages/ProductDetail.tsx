@@ -54,7 +54,7 @@ export default function ProductDetail() {
   if (!product) {
     return (
       <section className="product-detail__not-found">
-        <title>Produit introuvable · Mobilo</title>
+        <title>Produit introuvable | Mobilo</title>
         <h1 className="product-detail__title">Produit introuvable</h1>
         <p>Ce produit n'existe pas ou ne fait pas partie de notre catalogue.</p>
         <Link to="/products">Retour au catalogue</Link>
@@ -65,9 +65,9 @@ export default function ProductDetail() {
   return (
     <div className="product-detail">
       {/* Une seule chaîne via un template : <title> n'accepte pas plusieurs morceaux de texte */}
-      <title>{`${product.title} · Mobilo`}</title>
+      <title>{`${product.title} | Mobilo`}</title>
       <Link to="/products" className="product-detail__back">
-        ← Retour au catalogue
+        Retour au catalogue
       </Link>
 
       <div className="product-detail__layout">
@@ -90,6 +90,13 @@ export default function ProductDetail() {
             <Rating value={product.rating} />
           </div>
           <p className="product-detail__price">{formatPrice(product.price)}</p>
+          {/* data-status : le CSS choisit la couleur du point selon la disponibilité */}
+          <p
+            className="product-detail__stock"
+            data-status={product.availabilityStatus}
+          >
+            {product.availabilityStatus} ({product.stock} en stock)
+          </p>
           <p className="product-detail__description">{product.description}</p>
           <ProductSpecs product={product} />
         </div>

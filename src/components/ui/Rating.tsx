@@ -10,7 +10,13 @@ export default function Rating({ value }: RatingProps) {
       <span className="rating__star" aria-hidden="true">
         ★
       </span>{' '}
-      {value.toFixed(1)} / 5
+      {/* Virgule française : 4.2 devient « 4,2 » */}
+      {value.toLocaleString('fr-FR', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })}
+      {/* « sur 5 » n'est pas affiché mais reste lu : sans lui, « 4,2 » ne veut rien dire à l'oral */}
+      <span className="visually-hidden"> sur 5</span>
     </span>
   )
 }

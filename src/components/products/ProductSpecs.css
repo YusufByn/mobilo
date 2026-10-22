@@ -1,20 +1,24 @@
-/* Deux colonnes : libellé à gauche, valeur à droite */
+/* Tableau à deux colonnes : libellé à gauche, valeur à droite, séparés par de fins traits */
 .product-specs {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--space-xs) var(--space-md);
+  width: 100%;
   margin: 0;
-  padding: var(--space-md);
-  font-size: var(--text-sm);
-  background-color: var(--color-surface-muted);
-  border-radius: var(--radius);
+  border-top: var(--hairline) solid var(--color-line-soft);
+}
+
+.product-specs dt,
+.product-specs dd {
+  margin: 0;
+  padding: var(--space-sm) 0;
+  border-bottom: var(--hairline) solid var(--color-line-soft);
 }
 
 .product-specs dt {
+  padding-right: var(--space-lg);
   font-weight: var(--weight-semibold);
 }
 
 .product-specs dd {
-  margin: 0;
   color: var(--color-text-muted);
 }

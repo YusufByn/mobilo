@@ -7,7 +7,8 @@ export default function Footer() {
   return (
     <footer className="footer">
       <p className="footer__inner">
-        <strong>Mobilo</strong> © {currentYear} · Données fournies par DummyJSON
+        <strong className="footer__logo">Mobilo</strong> Données produits
+        fournies par DummyJSON, {currentYear}.
       </p>
     </footer>
   )

@@ -18,6 +18,10 @@ export default function ProductReviews({ reviews }: ProductReviewsProps) {
           {reviews.map((review, index) => (
             <li key={index} className="product-reviews__item">
               <div className="product-reviews__header">
+                {/* Initiale décorative : le nom complet est juste à côté */}
+                <span className="product-reviews__initial" aria-hidden="true">
+                  {review.reviewerName.charAt(0)}
+                </span>
                 <p className="product-reviews__name">{review.reviewerName}</p>
                 <Rating value={review.rating} />
               </div>

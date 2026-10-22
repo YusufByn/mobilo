@@ -19,7 +19,7 @@ export default function Pagination({
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
       >
-        ← Précédent
+        Précédent
       </button>
       {/* aria-live : le changement de page est annoncé par les lecteurs d'écran */}
       <p className="pagination__status" aria-live="polite">
@@ -31,7 +31,7 @@ export default function Pagination({
         onClick={() => onPageChange(page + 1)}
         disabled={page === pageCount}
       >
-        Suivant →
+        Suivant
       </button>
     </nav>
   )

@@ -8,10 +8,6 @@ interface ProductSpecsProps {
 export default function ProductSpecs({ product }: ProductSpecsProps) {
   return (
     <dl className="product-specs">
-      <dt>Disponibilité</dt>
-      <dd>
-        {product.availabilityStatus} ({product.stock} en stock)
-      </dd>
       <dt>Garantie</dt>
       <dd>{product.warrantyInformation}</dd>
       <dt>Livraison</dt>
