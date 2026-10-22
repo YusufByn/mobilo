@@ -47,14 +47,14 @@ Aucune variable d'environnement.
 
 ## Pages
 
-| Page      | Route           | Contenu                                                  |
-| --------- | --------------- | -------------------------------------------------------- |
-| Accueil   | `/`             | accroche, accès au catalogue et à la wishlist            |
-| Catalogue | `/products`     | recherche, 2 filtres, grille de cartes, pagination       |
-| Détail    | `/products/:id` | fiche complète, avis clients, bouton wishlist            |
-| Wishlist  | `/wishlist`     | produits sauvegardés, lien vers la fiche, bouton retirer |
-| Création  | `/create`       | formulaire d'ajout de produit                            |
-| 404       | `*`             | page introuvable et lien de retour                       |
+| Page      | Route           | Contenu                                                             |
+| --------- | --------------- | ------------------------------------------------------------------- |
+| Accueil   | `/`             | une tuile par rayon (catalogue filtré), lien vers tout le catalogue |
+| Catalogue | `/products`     | recherche, 2 filtres, grille de cartes, pagination                  |
+| Détail    | `/products/:id` | fiche complète, avis clients, bouton wishlist                       |
+| Wishlist  | `/wishlist`     | produits sauvegardés, lien vers la fiche, bouton retirer            |
+| Création  | `/create`       | formulaire d'ajout de produit                                       |
+| 404       | `*`             | page introuvable et lien de retour                                  |
 
 ## Structure du projet
 
@@ -76,18 +76,20 @@ src/
 ## Choix techniques
 
 - **Recherche, filtres et pagination côté client** : l'API ne permet pas de combiner recherche, catégorie et prix (`/products/search` et `/products/category/{slug}` sont des endpoints séparés, et il n'existe pas de filtre par prix). On charge le catalogue une seule fois, puis on filtre en JavaScript, ce qui est instantané avec 33 produits.
-- **Données dérivées calculées au rendu** : la liste filtrée, le nombre de pages et les 6 produits de la page courante sont recalculés à chaque rendu, sans être stockés dans un état.
+- **Données dérivées calculées au rendu** : la liste filtrée, le nombre de pages et les 8 produits de la page courante sont recalculés à chaque rendu, sans être stockés dans un état.
 - **Context API** :
   - `FiltersContext` garde la recherche, les 2 filtres et la page courante. Placé au-dessus des routes, il conserve les critères quand on passe du catalogue à une fiche puis qu'on revient. Chaque changement de critère ramène à la page 1.
+  - Les tuiles de l'accueil appellent `showCategory`, qui remet tous les critères à zéro et choisit le rayon en une seule mise à jour. Appeler `resetFilters` puis `setCategory` ne marcherait pas : `setCategory` repartirait de l'ancien état et remettrait l'ancienne recherche.
   - La recherche est appliquée 300 ms après la dernière frappe, pour ne pas refiltrer à chaque lettre. Le minuteur est gardé dans un `useRef`, et chaque frappe annule le précédent.
   - `WishlistContext` garde la wishlist. Elle est lue dans le `localStorage` au premier rendu (initialisation lazy de `useState`), puis sauvegardée à chaque changement (`useEffect`). Seul un résumé du produit est stocké (id, nom, marque, prix, note, image), ce qui évite à la page Wishlist d'appeler l'API.
   - `ThemeContext` garde le thème clair ou sombre, choisi avec le bouton du header (visible aussi sur mobile). Il est sauvegardé dans le `localStorage` et restauré à l'ouverture. Sans choix enregistré, on suit le réglage de l'appareil (`prefers-color-scheme`). Le thème s'applique avec l'attribut `data-theme` sur `<html>`, qui active les couleurs sombres définies dans `variables.css`.
-  - Chaque contexte est créé avec `null` et exposé par un hook (`useFilters`, `useWishlist`) qui lève une erreur s'il est utilisé hors de son provider.
+  - Chaque contexte est créé avec `null` et exposé par un hook (`useFilters`, `useWishlist`, `useTheme`) qui lève une erreur s'il est utilisé hors de son provider.
 - **`fetch` + `useEffect`** plutôt qu'une bibliothèque de requêtes : il y a peu d'appels et pas besoin de cache. Tous les `fetch` sont dans `services/productService.ts`. Chaque fonction vérifie `response.ok`, car `fetch` ne lève pas d'erreur sur une réponse 404 ou 500.
 - **Produit introuvable** : un id inexistant (réponse 404), non numérique, ou hors des 3 catégories (ex. `/products/1`, un mascara) affiche « Produit introuvable » et non une erreur.
 - **Formulaire** : champs contrôlés gardés en `string` pendant la saisie, convertis avec `Number()` seulement à l'envoi. La validation est une fonction pure (`validateProduct`) appelée à la soumission. En cas d'échec de l'envoi, les valeurs sont conservées pour pouvoir renvoyer.
 - **Routing** : `BrowserRouter` avec une route `Layout` qui entoure toutes les pages (`Outlet`) et porte le seul `<main>` de l'application.
-- **CSS classique avec variables** : toutes les couleurs, tailles et espacements viennent de `src/styles/variables.css`. Mobile d'abord, puis deux points de rupture (640px et 1024px). Sur mobile, la navigation passe dans une barre d'onglets en bas de l'écran, uniquement en CSS.
+- **CSS classique avec variables** : toutes les couleurs, tailles et espacements viennent de `src/styles/variables.css`. Mobile d'abord, puis trois points de rupture (640px, 768px pour les lignes du catalogue, et 1024px). Chaque rayon a sa couleur : l'attribut `data-category` posé sur une page ou une tuile change la variable `--accent`, que le CSS utilise partout.
+- **Accueil sans appel API** : la photo et le prix de départ de chaque tuile sont écrits dans `Home.tsx`, relevés une fois dans les données fixes de DummyJSON. Charger les 194 produits juste pour afficher 3 prix ralentirait la première page. Sur mobile, la navigation passe dans une barre d'onglets en bas de l'écran, uniquement en CSS.
 - **Accessibilité** :
   - chaque champ a un `<label>`, et ses erreurs y sont reliées par `aria-describedby` ;
   - le bouton wishlist utilise `aria-pressed` ;
@@ -108,7 +110,7 @@ Aucune autre dépendance : pas de bibliothèque de composants, d'icônes ou de r
 
 ## Fonctionnalités
 
-- [x] Accueil avec accès au catalogue et à la wishlist
+- [x] Accueil avec une tuile par rayon, qui ouvre le catalogue déjà filtré
 - [x] Navigation sur toutes les pages, avec compteur de la wishlist (en-tête sur desktop, barre d'onglets sur mobile)
 - [x] Catalogue paginé (8 produits par page) avec recherche sur le nom et la marque, filtre par catégorie et par prix max, critères combinés et bouton « Réinitialiser »
 - [x] Fiche produit : image, description, disponibilité et stock, garantie, livraison, politique de retour, référence, avis clients
@@ -130,6 +132,7 @@ Aucune autre dépendance : pas de bibliothèque de composants, d'icônes ou de r
 - DummyJSON simule les créations : un produit ajouté renvoie toujours l'id 195 et n'est pas conservé après rechargement.
 - Données en anglais (noms, descriptions, avis, disponibilité, garantie, livraison) et prix en dollars.
 - Le catalogue complet (194 produits) est chargé pour n'en garder que 33 : acceptable ici, mais un vrai catalogue demanderait un filtrage côté serveur.
+- Les prix « dès » de l'accueil sont écrits en dur : ils ne suivraient pas un changement de prix dans l'API.
 - Les critères de recherche ne sont pas conservés après un rechargement de la page.
 - Pas de tests automatisés : les vérifications ont été faites à la main dans le navigateur.
 
