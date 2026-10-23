@@ -52,7 +52,7 @@ Aucune variable d'environnement.
 | Page      | Route           | Contenu                                                             |
 | --------- | --------------- | ------------------------------------------------------------------- |
 | Accueil   | `/`             | une tuile par rayon (catalogue filtré), lien vers tout le catalogue |
-| Catalogue | `/products`     | recherche, 2 filtres, grille de cartes, pagination                  |
+| Catalogue | `/products`     | recherche, 2 filtres, liste de produits, pagination                 |
 | Détail    | `/products/:id` | fiche complète, avis clients, bouton wishlist                       |
 | Wishlist  | `/wishlist`     | produits sauvegardés, lien vers la fiche, bouton retirer            |
 | Création  | `/create`       | formulaire d'ajout de produit                                       |

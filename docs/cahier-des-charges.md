@@ -23,7 +23,7 @@ Marques présentes : Apple, Samsung, Oppo, Realme, Vivo, Beats, Amazon… Prix d
 | ------------ | -------------------------------------------------------------------------------------------- |
 | Build        | Vite (template `react-ts`)                                                                   |
 | UI           | React + TypeScript 6 (mode `strict`, actif par défaut)                                       |
-| Routing      | react-router (v7)                                                                            |
+| Routing      | react-router (v8)                                                                            |
 | État partagé | Context API (`createContext`, `useContext`)                                                  |
 | Requêtes     | `fetch` + `useEffect`                                                                        |
 | Style        | Tailwind CSS v4, thème (couleurs, tailles, espacements) dans `styles/variables.css`          |
@@ -44,19 +44,19 @@ Header d'envoi : `Content-Type: application/json`.
 
 ## 4. Pages et routes
 
-| Page      | Route           | Contenu                                                  |
-| --------- | --------------- | -------------------------------------------------------- |
-| Accueil   | `/`             | en-tête, accroche, accès au catalogue et à la wishlist   |
-| Catalogue | `/products`     | recherche, 2 filtres, grille de cartes, pagination       |
-| Détail    | `/products/:id` | fiche complète, bouton wishlist                          |
-| Wishlist  | `/wishlist`     | produits sauvegardés, lien vers la fiche, bouton retirer |
-| Création  | `/create`       | formulaire de nouveau produit                            |
-| 404       | `*`             | page introuvable + lien retour                           |
+| Page      | Route           | Contenu                                                             |
+| --------- | --------------- | ------------------------------------------------------------------- |
+| Accueil   | `/`             | une tuile par rayon (catalogue filtré), lien vers tout le catalogue |
+| Catalogue | `/products`     | recherche, 2 filtres, liste de produits, pagination                 |
+| Détail    | `/products/:id` | fiche complète, bouton wishlist                                     |
+| Wishlist  | `/wishlist`     | produits sauvegardés, lien vers la fiche, bouton retirer            |
+| Création  | `/create`       | formulaire de nouveau produit                                       |
+| 404       | `*`             | page introuvable + lien retour                                      |
 
 Navigation présente sur toutes les pages, avec les liens Accueil, Catalogue, Wishlist (avec compteur), Ajouter un produit :
 
 - **Desktop et tablette (640px et plus)** : en-tête en haut avec le logo et les liens.
-- **Mobile (moins de 640px)** : en-tête réduit au logo, liens dans une barre d'onglets fixée en bas de l'écran (icône + libellé). Bascule en CSS uniquement (media query), sans état React.
+- **Mobile (moins de 640px)** : en-tête réduit au logo, liens dans une barre d'onglets fixée en bas de l'écran (icône + libellé). Bascule en CSS uniquement (classes `sm:hidden` / `hidden sm:flex`, des media queries), sans état React.
 
 L'accès direct à une URL et le rechargement fonctionnent (rewrite Vercel vers `index.html`).
 
@@ -94,10 +94,10 @@ Si l'id existe mais n'appartient pas aux 3 catégories (ex. `/products/1`, un ma
 - **Filtre 1** : catégorie (Toutes, Smartphones, Tablettes, Accessoires).
 - **Filtre 2** : prix max (Tous, moins de 50 $, 100 $, 300 $, 500 $, 1 000 $).
 - Bouton « Réinitialiser ».
-- Nombre de résultats affiché au-dessus de la grille (« 4 modèles disponibles »).
+- Nombre de résultats affiché au-dessus de la liste (« 4 modèles disponibles »).
 - Mobile : recherche en pleine largeur, les 2 filtres côte à côte, bouton Réinitialiser en pleine largeur.
 - Les trois critères se combinent : un résultat doit respecter tous les critères.
-- Pagination : 6 produits par page, boutons Précédent / Suivant, indication « Page 2 / 6 ».
+- Pagination : 8 produits par page, boutons Précédent / Suivant, indication « Page 2 / 6 ».
 - La pagination porte sur les résultats filtrés.
 - Toute modification d'un critère ramène à la page 1.
 - Critères et page courante conservés dans `FiltersContext` pendant la navigation.
@@ -151,8 +151,8 @@ DummyJSON ne sauvegarde pas la création : le produit n'apparaît pas dans le ca
 
 ## 7. Responsive et accessibilité
 
-- Mobile d'abord : grille 1 colonne, 2 en tablette, 3 en desktop. Aucun débordement horizontal.
-- Navigation repliable sur mobile si nécessaire.
+- Mobile d'abord : catalogue en liste (une ligne par produit, photo à gauche), infos sur une seule ligne à partir de 768px. Accueil : tuiles empilées, côte à côte à partir de 1024px. Aucun débordement horizontal.
+- Navigation en barre d'onglets en bas de l'écran sur mobile.
 - Tous les champs ont un `<label htmlFor>`.
 - Images avec un `alt` pertinent.
 - Toutes les actions sont des `<button>` ou des `<Link>` (accessibles au clavier).
@@ -171,7 +171,7 @@ src/
 │   └── global.css                // import de Tailwind, styles de base (body, focus visible)
 ├── config/
 │   ├── api.ts                    // API_URL
-│   └── shop.ts                   // catégories gardées + libellés, seuils de prix
+│   └── shop.ts                   // catégories + libellés, seuils de prix, produits par page, clés localStorage
 ├── types/
 │   ├── product.ts                // Product, Review, ProductsResponse, WishlistItem
 │   ├── filters.ts                // Filters
@@ -210,7 +210,7 @@ src/
 │       ├── ErrorMessage.tsx
 │       ├── EmptyState.tsx
 │       ├── FormField.tsx         // label + champ + erreur, reliés par htmlFor et aria-describedby
-│       └── Rating.tsx            // « ★ 4.8 / 5 », utilisé par la carte, la fiche et les avis
+│       └── Rating.tsx            // « ★ 4,8 » (« sur 5 » lu par les lecteurs d'écran), carte, fiche et avis
 └── pages/
     ├── Home.tsx
     ├── Products.tsx
@@ -286,6 +286,7 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 - Un composant par fichier.
 - Types partagés dans `types/`, types locaux (props d'un seul composant) dans le fichier du composant.
 - Pas de `fetch` en dehors de `services/`.
+- Styles : classes Tailwind du thème (`text-muted`, `p-md`…) dans le JSX, aucune valeur en dur ; valeur entre crochets seulement quand aucune classe n'existe. Boutons via le composant `Button`.
 - Commentaires : pas de paraphrase du code. Une ligne quand le code fait un choix qui ne se devine pas (le « pourquoi »).
 - `npm run typecheck`, `npm run lint` et `npm run format:check` passent sans erreur avant chaque commit.
 
@@ -302,6 +303,7 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 - DummyJSON simule les créations : un produit créé n'est pas conservé après rechargement.
 - Données en anglais (noms, descriptions, avis) et prix en dollars.
 - On charge les 194 produits pour n'en garder que 33 : acceptable ici, mais un vrai catalogue demanderait un filtrage serveur.
+- Les prix « dès » de l'accueil sont écrits en dur : ils ne suivraient pas un changement de prix dans l'API.
 - Les critères de recherche ne survivent pas au rechargement (non exigé).
 
 ## 14. Ordre de développement
@@ -315,8 +317,9 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 7. ~~WishlistContext + page Wishlist~~ (fait)
 8. ~~Formulaire de création~~ (fait)
 9. ~~États (chargement, erreur, vide), accessibilité, responsive~~ (fait)
-10. Bonus
-11. README final
+10. ~~Bonus~~ (fait : TypeScript, dark mode, délai de recherche, Vercel ; CRUD non réalisé)
+11. ~~README final~~ (fait)
+12. ~~Optimisation : Tailwind CSS v4 à la place du CSS classique, composant `Button` partagé~~ (fait, rendu identique)
 
 ## 15. Checklist de conformité
 
@@ -365,5 +368,5 @@ Chaque contexte expose un hook (`useFilters`, `useWishlist`, `useTheme`) qui lè
 
 - [x] Linter (oxlint) + Prettier configurés, lint et format OK
 - [x] `npm run typecheck` sans erreur
-- [x] README complet (sujet, API, installation, config, choix techniques, fonctionnalités, bonus, limites, usage de l'IA , lien Vercel)
+- [x] README complet (sujet, API, installation, config, choix techniques, fonctionnalités, bonus, limites, usage de l'IA, lien Vercel)
 - [ ] Dépôt GitHub rendu sur Cesar
