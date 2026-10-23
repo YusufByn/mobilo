@@ -41,9 +41,7 @@ export async function getProductById(id: number): Promise<Product | null> {
 }
 
 // DummyJSON simule la création : il renvoie le produit avec un id, mais ne l'enregistre pas
-export async function createProduct(
-  product: NewProduct,
-): Promise<CreatedProduct> {
+export async function createProduct(product: NewProduct,): Promise<CreatedProduct> {
   const response = await fetch(`${API_URL}/products/add`, {
     method: 'POST',
     // Indique à l'API que le corps de la requête est du JSON
@@ -56,5 +54,6 @@ export async function createProduct(
   }
 
   const created: CreatedProduct = await response.json()
+  
   return created
 }
