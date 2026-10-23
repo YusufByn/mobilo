@@ -2,6 +2,8 @@
 
 Boutique en ligne de téléphonie (smartphones, tablettes, accessoires) réalisée en React + TypeScript. Projet individuel Sup de Vinci.
 
+**Site en ligne** : https://mobilo-delta.vercel.app
+
 ## Sujet et API
 
 - **Sujet** : catalogue avec recherche, filtres et pagination, fiche produit, wishlist sauvegardée dans le navigateur et formulaire d'ajout de produit.
@@ -43,7 +45,7 @@ Aucune variable d'environnement.
 
 - `src/config/api.ts` : URL de l'API.
 - `src/config/shop.ts` : catégories gardées et leurs libellés, seuils du filtre de prix, nombre de produits par page (8), clé du `localStorage` (`mobilo:wishlist`).
-- `vercel.json` : prévu pour un éventuel déploiement sur Vercel (redirige toutes les URL vers `index.html`). Inutile en local : le serveur de Vite gère déjà l'accès direct et le rechargement.
+- `vercel.json` : redirige toutes les URL vers `index.html` sur Vercel, pour que l'accès direct à une page (ex. `/products/1`) et le rechargement fonctionnent. Inutile en local : le serveur de Vite le fait déjà.
 
 ## Pages
 
@@ -124,7 +126,7 @@ Aucune autre dépendance : pas de bibliothèque de composants, d'icônes ou de r
 - [x] TypeScript
 - [x] Dark mode
 - [x] Recherche avec délai (300 ms)
-- [ ] Déploiement Vercel (non réalisé)
+- [x] Déploiement Vercel (https://mobilo-delta.vercel.app)
 - [ ] CRUD complet (non prévu)
 
 ## Limites connues
@@ -144,4 +146,13 @@ Aucune autre dépendance : pas de bibliothèque de composants, d'icônes ou de r
 
 ## Déploiement
 
-Projet non déployé : il se lance en local (voir « Installation et lancement »).
+Déployé sur Vercel : https://mobilo-delta.vercel.app
+
+Déploiement fait avec la CLI Vercel, sans l'ajouter aux dépendances du projet :
+
+```bash
+npx vercel login    # une seule fois
+npx vercel --prod   # build (npm run build) puis mise en ligne de dist/
+```
+
+Vercel détecte Vite tout seul. Le dossier `.vercel/` (lien entre le dossier local et le projet Vercel) est ignoré par Git.
