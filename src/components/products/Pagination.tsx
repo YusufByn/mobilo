@@ -1,4 +1,4 @@
-import './Pagination.css'
+import Button from '../ui/Button'
 
 interface PaginationProps {
   page: number
@@ -12,27 +12,31 @@ export default function Pagination({
   onPageChange,
 }: PaginationProps) {
   return (
-    <nav className="pagination" aria-label="Pagination">
-      <button
-        type="button"
-        className="pagination__button"
+    <nav
+      className="flex flex-wrap items-center justify-between gap-x-md gap-y-sm mt-lg"
+      aria-label="Pagination"
+    >
+      <Button
+        variant="secondary"
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
       >
         Précédent
-      </button>
+      </Button>
       {/* aria-live : le changement de page est annoncé par les lecteurs d'écran */}
-      <p className="pagination__status" aria-live="polite">
+      <p
+        className="tabular-nums whitespace-nowrap text-muted"
+        aria-live="polite"
+      >
         Page {page} / {pageCount}
       </p>
-      <button
-        type="button"
-        className="pagination__button"
+      <Button
+        variant="secondary"
         onClick={() => onPageChange(page + 1)}
         disabled={page === pageCount}
       >
         Suivant
-      </button>
+      </Button>
     </nav>
   )
 }

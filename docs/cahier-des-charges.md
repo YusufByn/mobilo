@@ -26,7 +26,7 @@ Marques présentes : Apple, Samsung, Oppo, Realme, Vivo, Beats, Amazon… Prix d
 | Routing      | react-router (v7)                                                                            |
 | État partagé | Context API (`createContext`, `useContext`)                                                  |
 | Requêtes     | `fetch` + `useEffect`                                                                        |
-| Style        | CSS classique avec variables CSS                                                             |
+| Style        | Tailwind CSS v4, thème (couleurs, tailles, espacements) dans `styles/variables.css`          |
 | Qualité      | oxlint (linter fourni par le template Vite) + Prettier, vérification des types avec `tsc -b` |
 | Déploiement  | Vercel (bonus)                                                                               |
 
@@ -167,8 +167,8 @@ src/
 ├── main.tsx
 ├── App.tsx
 ├── styles/
-│   ├── variables.css             // tokens de la maquette (clair + sombre)
-│   └── global.css                // reset, body, focus visible
+│   ├── variables.css             // thème Tailwind (@theme) : tokens de la maquette (clair + sombre)
+│   └── global.css                // import de Tailwind, styles de base (body, focus visible)
 ├── config/
 │   ├── api.ts                    // API_URL
 │   └── shop.ts                   // catégories gardées + libellés, seuils de prix
@@ -199,11 +199,13 @@ src/
 │   │   ├── SearchForm.tsx
 │   │   ├── Pagination.tsx
 │   │   ├── ProductSpecs.tsx      // disponibilité, garantie, livraison, retours, référence
+│   │   ├── ProductStock.tsx      // disponibilité avec un point de couleur
 │   │   ├── ProductReviews.tsx
 │   │   ├── ProductForm.tsx       // les 6 champs du formulaire de création
 │   │   ├── CreatedProductSummary.tsx  // confirmation avec la réponse de l'API
 │   │   └── WishlistButton.tsx
 │   └── ui/
+│       ├── Button.tsx            // bouton ou lien en forme de bouton, 4 variantes
 │       ├── Loader.tsx
 │       ├── ErrorMessage.tsx
 │       ├── EmptyState.tsx

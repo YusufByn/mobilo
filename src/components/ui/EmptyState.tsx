@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import './EmptyState.css'
 
 interface EmptyStateProps {
   message: string
@@ -7,10 +6,13 @@ interface EmptyStateProps {
   children: ReactNode
 }
 
+// Sobre : une phrase et l'action qui débloque la situation
 export default function EmptyState({ message, children }: EmptyStateProps) {
   return (
-    <div className="empty-state">
-      <p className="empty-state__message">{message}</p>
+    <div className="flex flex-col items-start gap-md px-lg py-xl bg-surface rounded-card">
+      <p className="text-xl font-semibold leading-display tracking-tight">
+        {message}
+      </p>
       {children}
     </div>
   )

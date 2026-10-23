@@ -1,15 +1,18 @@
 /* Direction « l'ardoise des prix » : le prix en grands chiffres serrés, une couleur par rayon */
-/* Breakpoints (non utilisables en variables dans les media queries) : 640px, 768px et 1024px */
+/* Chaque variable de @theme crée des classes Tailwind : --color-ink donne text-ink, bg-ink, border-ink… */
+/* Breakpoints : ceux de Tailwind, sm (640px), md (768px) et lg (1024px) */
 
-:root {
-  /* Contrôles natifs (listes déroulantes, barres de défilement) aux couleurs du thème */
-  color-scheme: light;
+@theme {
+  /* On repart de zéro pour les couleurs, tailles de texte et graisses : seules les nôtres existent */
+  --color-*: initial;
+  --text-*: initial;
+  --font-weight-*: initial;
 
   /* Neutres */
-  --color-bg: #f7f6f2;
+  --color-page: #f7f6f2;
   --color-surface: #ffffff;
-  --color-text: #000000;
-  --color-text-muted: #5c5b57;
+  --color-ink: #000000;
+  --color-muted: #5c5b57;
   /* Filets fins : séparation des lignes du catalogue, header, tableaux */
   --color-line-soft: #dcdad3;
   --color-line: #000000;
@@ -27,8 +30,8 @@
   --color-on-cat-accessories: #000000;
 
   /* Couleur d'accent par défaut (aucun rayon choisi) : le cobalt des smartphones */
-  --accent: var(--color-cat-smartphones);
-  --on-accent: var(--color-on-cat-smartphones);
+  --color-accent: var(--color-cat-smartphones);
+  --color-on-accent: var(--color-on-cat-smartphones);
 
   --color-action: #2238ff;
   --color-action-fill: #2238ff;
@@ -48,16 +51,11 @@
   --color-footer: transparent;
   --color-on-footer: #000000;
   --color-footer-muted: #5c5b57;
-  --color-shadow: #000000;
 
   /* Typographie : Archivo (axe de largeur) pour les chiffres et le logo, Hanken Grotesk pour le reste */
   --font-display: 'Archivo', system-ui, sans-serif;
   --font-text:
     'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  /* Condensé : les prix se lisent comme sur une ardoise, grands et serrés */
-  --stretch-condensed: 62.5%;
-  --stretch-product: 100%;
-  --stretch-display: 125%;
 
   --text-sm: 0.875rem;
   --text-md: 1rem;
@@ -65,66 +63,81 @@
   --text-xl: 1.375rem;
   --text-2xl: 1.875rem;
   --text-3xl: 2.75rem;
-  /* Chiffres de prix : ligne du catalogue, tuile de l'accueil, fiche */
+  /* Chiffres de prix : ligne du catalogue, tuile de l'accueil */
   --text-price: 2.25rem;
   --text-price-lg: 4.5rem;
-  --text-hero: 4rem;
 
-  --weight-regular: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 700;
-  --weight-black: 800;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
 
-  --leading: 1.5;
+  --leading-body: 1.5;
   --leading-display: 1.1;
   --tracking-tight: -0.02em;
 
-  /* Espacements (rythme de 4px / 8px) */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+  /* Espacements (rythme de 4px / 8px) : p-md, gap-lg, mt-sm… */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
 
-  /* Formes */
-  --border: 2px;
-  --hairline: 1px;
+  /* 44px : cliquable au doigt, et même hauteur pour tous les champs et boutons */
+  --spacing-control: 44px;
+  --spacing-header: 64px;
+  --spacing-mobile-nav: 64px;
+  --spacing-icon: 1.25rem;
+  --spacing-loader: 2.5rem;
+  --spacing-row-image: 5.5rem;
+  --spacing-detail-image: 28rem;
+  /* Place laissée au cœur, posé en haut à droite d'une ligne du catalogue sur mobile */
+  --spacing-heart: calc(var(--spacing-control) + var(--spacing-sm));
+  /* Décalage qui aligne un élément sous le texte d'une ligne, après la photo */
+  --spacing-row-text: calc(
+    var(--spacing-row-image) + var(--spacing-md) + var(--spacing-sm)
+  );
+  /* Le commentaire d'un avis s'aligne sous le nom, pas sous l'initiale */
+  --spacing-review-text: calc(var(--spacing-control) + var(--spacing-md));
+
+  /* Largeurs max : max-w-page, max-w-form, max-w-measure */
+  --container-page: 1200px;
+  --container-form: 36rem;
+  /* Largeur de lecture confortable pour les paragraphes */
+  --container-measure: 65ch;
+
+  /* Formes (les pastilles utilisent rounded-full de Tailwind) */
   --radius-tag: 6px;
   --radius-field: 10px;
   --radius-card: 14px;
   --radius-tile: 24px;
-  --radius-pill: 999px;
-  --shadow-hover: 4px 4px 0 var(--color-shadow);
-  /* Durée commune des réponses au survol et au clic */
-  --duration: 0.2s;
 
-  /* Mise en page */
-  --container-max: 1200px;
-  --header-height: 64px;
-  --mobile-nav-height: 64px;
-  /* 44px : cliquable au doigt, et même hauteur pour tous les champs et boutons */
-  --control-height: 44px;
-  --icon-size: 1.25rem;
-  --loader-size: 2.5rem;
-  --card-image-height: 13.75rem;
-  --row-image-size: 5.5rem;
-  --detail-image-max-height: 28rem;
-  /* Largeur de lecture confortable pour les paragraphes */
-  --measure: 65ch;
-  --form-width: 36rem;
+  /* Durée commune des réponses au survol et au clic (classes transition-*) */
+  --default-transition-duration: 0.2s;
+}
+
+/* Hors de @theme : font-stretch n'a pas de famille de variables dans Tailwind */
+:root {
+  /* Contrôles natifs (listes déroulantes, barres de défilement) aux couleurs du thème */
+  color-scheme: light;
+
+  /* Condensé : les prix se lisent comme sur une ardoise, grands et serrés */
+  --stretch-condensed: 62.5%;
+  --stretch-product: 100%;
+  --stretch-display: 125%;
 }
 
 /* Thème sombre (bonus) : activé par ThemeContext via <html data-theme="dark"> */
+/* Les classes Tailwind lisent les variables : les redéfinir suffit à tout recolorer */
 [data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #111113;
+  --color-page: #111113;
   --color-surface: #1b1b1e;
-  --color-text: #f3f2ee;
-  --color-text-muted: #a6a49d;
+  --color-ink: #f3f2ee;
+  --color-muted: #a6a49d;
   --color-line-soft: #2e2e33;
   --color-line: #3a3a40;
   --color-field-border: #7a7973;
@@ -151,21 +164,20 @@
   --color-warning: #e3b341;
   --color-on-footer: #f3f2ee;
   --color-footer-muted: #a6a49d;
-  --color-shadow: #4057ff;
 }
 
-/* Chaque rayon impose sa couleur à tout ce qui porte data-category (page catalogue, fiche, tuile) */
+/* Chaque rayon impose sa couleur à tout ce qui porte data-category (page catalogue, tuile) */
 [data-category='smartphones'] {
-  --accent: var(--color-cat-smartphones);
-  --on-accent: var(--color-on-cat-smartphones);
+  --color-accent: var(--color-cat-smartphones);
+  --color-on-accent: var(--color-on-cat-smartphones);
 }
 
 [data-category='tablets'] {
-  --accent: var(--color-cat-tablets);
-  --on-accent: var(--color-on-cat-tablets);
+  --color-accent: var(--color-cat-tablets);
+  --color-on-accent: var(--color-on-cat-tablets);
 }
 
 [data-category='mobile-accessories'] {
-  --accent: var(--color-cat-accessories);
-  --on-accent: var(--color-on-cat-accessories);
+  --color-accent: var(--color-cat-accessories);
+  --color-on-accent: var(--color-on-cat-accessories);
 }

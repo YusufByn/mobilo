@@ -1,7 +1,6 @@
 import { SHOP_CATEGORIES } from '../../config/shop'
 import type { CreatedProduct } from '../../types/form'
 import { formatPrice } from '../../utils/formatPrice'
-import './CreatedProductSummary.css'
 
 interface CreatedProductSummaryProps {
   product: CreatedProduct
@@ -14,12 +13,17 @@ export default function CreatedProductSummary({
     (shopCategory) => shopCategory.value === product.category,
   )
 
+  // Succès : cadre au contour vert, même forme que les cartes
+  // [&>dt] : « les enfants dt de cette liste », pour ne pas répéter les classes sur chaque ligne
   return (
-    <div className="created-product" role="status">
-      <p className="created-product__title">
+    <div
+      className="flex flex-col gap-md mb-xl p-lg bg-surface border-2 border-success rounded-card"
+      role="status"
+    >
+      <p className="font-display text-lg font-stretch-(--stretch-product) font-bold text-success">
         Produit créé avec succès (id {product.id})
       </p>
-      <dl className="created-product__details">
+      <dl className="grid grid-cols-[auto_1fr] gap-x-lg gap-y-xs [&>dt]:font-semibold [&>dd]:text-muted [&>dd]:wrap-anywhere">
         <dt>Nom</dt>
         <dd>{product.title}</dd>
         <dt>Marque</dt>
@@ -33,7 +37,7 @@ export default function CreatedProductSummary({
         <dt>Description</dt>
         <dd>{product.description}</dd>
       </dl>
-      <p className="created-product__note">
+      <p className="text-sm text-muted">
         DummyJSON simule la création : ce produit n'apparaîtra pas dans le
         catalogue.
       </p>

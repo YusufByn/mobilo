@@ -70,9 +70,9 @@ src/
 ├── components/
 │   ├── layout/    Layout, Header, MobileNav, Footer
 │   ├── products/  cartes, grille, recherche, pagination, fiche, formulaire
-│   └── ui/        Loader, ErrorMessage, EmptyState, Rating, FormField
+│   └── ui/        Button, Loader, ErrorMessage, EmptyState, Rating, FormField
 ├── pages/         une page par route
-└── styles/        variables.css (couleurs, tailles, espacements), global.css
+└── styles/        variables.css (thème Tailwind : couleurs, tailles, espacements), global.css
 ```
 
 ## Choix techniques
@@ -90,7 +90,9 @@ src/
 - **Produit introuvable** : un id inexistant (réponse 404), non numérique, ou hors des 3 catégories (ex. `/products/1`, un mascara) affiche « Produit introuvable » et non une erreur.
 - **Formulaire** : champs contrôlés gardés en `string` pendant la saisie, convertis avec `Number()` seulement à l'envoi. La validation est une fonction pure (`validateProduct`) appelée à la soumission. En cas d'échec de l'envoi, les valeurs sont conservées pour pouvoir renvoyer.
 - **Routing** : `BrowserRouter` avec une route `Layout` qui entoure toutes les pages (`Outlet`) et porte le seul `<main>` de l'application.
-- **CSS classique avec variables** : toutes les couleurs, tailles et espacements viennent de `src/styles/variables.css`. Mobile d'abord, puis trois points de rupture (640px, 768px pour les lignes du catalogue, et 1024px). Chaque rayon a sa couleur : l'attribut `data-category` posé sur une page ou une tuile change la variable `--accent`, que le CSS utilise partout.
+- **Tailwind CSS v4** : les styles sont écrits en classes directement dans le JSX (`flex gap-md text-muted`), sans fichier `.css` par composant. Toutes les couleurs, tailles et espacements sont déclarés une fois dans le bloc `@theme` de `src/styles/variables.css` : chaque variable y crée ses classes (`--color-muted` donne `text-muted`, `--spacing-md` donne `p-md`, `gap-md`…). Mobile d'abord, puis les préfixes `sm:` (640px), `md:` (768px, lignes du catalogue) et `lg:` (1024px).
+- **Mode sombre et couleur des rayons sans classe en plus** : les classes Tailwind lisent des variables CSS. Le mode sombre redéfinit ces variables sous `[data-theme='dark']`, et l'attribut `data-category` posé sur une page ou une tuile redéfinit `--color-accent`. Une même classe `bg-accent` donne donc le bleu, le rouge ou le vert selon le rayon.
+- **Composant `Button`** : le style « pastille noire » était recopié dans 6 fichiers. Il est maintenant dans `components/ui/Button.tsx`, avec 4 variantes (`primary`, `secondary` pour la pagination, `outline` pour « Retirer », `ghost` pour « Réinitialiser »). Avec la prop `to`, il affiche un `<Link>` qui a l'air d'un bouton.
 - **Accueil sans appel API** : la photo et le prix de départ de chaque tuile sont écrits dans `Home.tsx`, relevés une fois dans les données fixes de DummyJSON. Charger les 194 produits juste pour afficher 3 prix ralentirait la première page. Sur mobile, la navigation passe dans une barre d'onglets en bas de l'écran, uniquement en CSS.
 - **Accessibilité** :
   - chaque champ a un `<label>`, et ses erreurs y sont reliées par `aria-describedby` ;

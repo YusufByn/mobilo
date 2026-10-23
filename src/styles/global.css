@@ -1,75 +1,53 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* Seul fichier CSS importé par l'app : Tailwind (reset + classes), puis notre thème */
+/* source('../') : Tailwind cherche les classes dans src/ seulement, pas dans les maquettes de docs/ */
+@import 'tailwindcss' source('../');
+@import './variables.css';
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: var(--font-text);
-  font-size: var(--text-md);
-  line-height: var(--leading);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  -webkit-font-smoothing: antialiased;
-}
+/* Styles de base des balises HTML : les classes Tailwind des composants passent par-dessus */
+@layer base {
+  body {
+    min-height: 100vh;
+    font-family: var(--font-text);
+    font-size: var(--text-md);
+    line-height: var(--leading-body);
+    color: var(--color-ink);
+    background-color: var(--color-page);
+    -webkit-font-smoothing: antialiased;
+  }
 
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-}
+  /* Titres en Hanken resserré : Archivo est gardé pour le logo et les chiffres des prix */
+  h1,
+  h2,
+  h3 {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-tight);
+  }
 
-/* Titres en Hanken resserré : Archivo est gardé pour le logo et les chiffres des prix */
-h1,
-h2,
-h3 {
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-tight);
-}
+  /* Le reset de Tailwind retire la couleur et le soulignement des liens : on les remet */
+  a {
+    color: var(--color-action);
+    text-decoration-line: underline;
+  }
 
-img {
-  display: block;
-  max-width: 100%;
-}
+  /* Le reset de Tailwind laisse la flèche par défaut sur les boutons */
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 
-a {
-  color: var(--color-action);
-}
+  /* Focus visible uniquement à la navigation clavier, pas au clic souris */
+  :focus-visible {
+    outline: 2px solid var(--color-action);
+    outline-offset: 2px;
+  }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  color: inherit;
-}
-
-/* Focus visible uniquement à la navigation clavier, pas au clic souris */
-:focus-visible {
-  outline: 2px solid var(--color-action);
-  outline-offset: 2px;
-}
-
-/* Texte lu par les lecteurs d'écran mais invisible à l'écran (ex. « sur 5 » après la note) */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-/* Mouvement réduit demandé par l'utilisateur : plus de survol animé ni de spinner qui tourne */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
+  /* Mouvement réduit demandé par l'utilisateur : plus de survol animé ni de spinner qui tourne */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 }

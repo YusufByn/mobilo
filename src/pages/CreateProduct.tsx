@@ -10,7 +10,6 @@ import type {
   ProductFormValues,
 } from '../types/form'
 import { validateProduct } from '../utils/validateProduct'
-import './CreateProduct.css'
 
 const EMPTY_VALUES: ProductFormValues = {
   title: '',
@@ -76,10 +75,11 @@ export default function CreateProduct() {
   }
 
   return (
-    <div className="create-product">
+    // Une seule colonne étroite : plus lisible qu'un formulaire en pleine largeur
+    <div className="max-w-form">
       <title>Ajouter un produit | Mobilo</title>
-      <h1 className="create-product__title">Ajouter un produit</h1>
-      <p className="create-product__intro">
+      <h1 className="text-2xl sm:text-3xl">Ajouter un produit</h1>
+      <p className="mt-sm mb-xl text-muted">
         Remplissez les informations ci-dessous pour proposer un nouveau produit.
       </p>
 

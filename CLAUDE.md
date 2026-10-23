@@ -36,9 +36,9 @@ Après chaque étape : `npm run lint`, `npm run typecheck` et `npm run format:ch
 
 ## Stack imposée
 
-React 19, TypeScript 6 (strict), Vite, react-router v8, CSS classique, oxlint, Prettier.
+React 19, TypeScript 6 (strict), Vite, react-router v8, Tailwind CSS v4, oxlint, Prettier.
 
-**N'ajoute aucune dépendance** sans demander : pas de Tailwind, de bibliothèque de composants, d'axios, de TanStack, de Redux, de Zustand, de lodash ni de bibliothèque d'icônes. Les icônes sont des SVG inline simples ou des caractères (♥, ★).
+**N'ajoute aucune dépendance** sans demander : pas de bibliothèque de composants, d'axios, de TanStack, de Redux, de Zustand, de lodash ni de bibliothèque d'icônes. Les icônes sont des SVG inline simples ou des caractères (♥, ★).
 
 ## Règles de simplicité
 
@@ -66,10 +66,10 @@ Respecte l'archi de la section 8 du CDC :
 
 ## Style CSS
 
-- Un fichier CSS à côté de chaque composant ou page qui en a besoin (`ProductCard.tsx` + `ProductCard.css`), importé dans le composant.
-- Noms de classes en kebab-case, préfixés par le composant : `.product-card`, `.product-card__title`.
-- **Toujours les variables** de `src/styles/variables.css` : aucune couleur, taille de police ou espacement en dur.
-- Mobile d'abord, puis `@media (min-width: 640px)` et `@media (min-width: 1024px)`.
+- Tailwind v4 : les styles sont des classes dans le JSX, pas de fichier `.css` par composant. Seuls fichiers CSS : `styles/variables.css` (thème `@theme`, mode sombre, couleurs de rayon) et `styles/global.css` (import de Tailwind, styles de base).
+- **Toujours les classes du thème** (`text-muted`, `p-md`, `rounded-card`…) : aucune couleur, taille de police ou espacement en dur. Valeur entre crochets (`grid-cols-[1fr_13rem]`) seulement quand aucune classe n'existe.
+- Liste de classes répétée dans un fichier : une constante en majuscules (`const INPUT_CLASSES = '...'`). Bouton ou lien en forme de bouton : le composant `ui/Button`.
+- Mobile d'abord, puis les préfixes `sm:` (640px), `md:` (768px) et `lg:` (1024px).
 - Mouvement uniquement en réponse à une action (survol, clic) et le spinner de chargement. Aucune animation d'apparition. Tout est coupé sous `prefers-reduced-motion`.
 
 ## Accessibilité (exigée par la consigne)

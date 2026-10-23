@@ -5,8 +5,8 @@ import type {
   ProductFormErrors,
   ProductFormValues,
 } from '../../types/form'
+import Button from '../ui/Button'
 import FormField from '../ui/FormField'
-import './ProductForm.css'
 
 interface ProductFormProps {
   values: ProductFormValues
@@ -27,7 +27,7 @@ export default function ProductForm({
 }: ProductFormProps) {
   // noValidate : on affiche nos propres messages, pas les bulles du navigateur
   return (
-    <form className="product-form" onSubmit={onSubmit} noValidate>
+    <form className="flex flex-col gap-lg" onSubmit={onSubmit} noValidate>
       <FormField
         name="title"
         label="Nom du produit"
@@ -61,7 +61,8 @@ export default function ProductForm({
         ))}
       </FormField>
 
-      <div className="product-form__row">
+      {/* Prix et stock l'un sous l'autre, comme tous les champs */}
+      <div className="grid grid-cols-1 gap-lg">
         <FormField
           name="price"
           label="Prix ($)"
@@ -92,19 +93,18 @@ export default function ProductForm({
       />
 
       {submitError && (
-        <p className="product-form__error" role="alert">
+        <p
+          className="p-md font-semibold text-error bg-surface border-2 border-error rounded-field"
+          role="alert"
+        >
           {submitError}
         </p>
       )}
 
-      <button
-        type="submit"
-        className="product-form__submit"
-        disabled={submitting}
-      >
+      <Button type="submit" disabled={submitting}>
         {submitting ? 'Envoi…' : 'Ajouter le produit'}
-      </button>
-      <p className="product-form__note">
+      </Button>
+      <p className="-mt-sm text-sm text-muted">
         Les champs marqués d'un * sont obligatoires.
       </p>
     </form>

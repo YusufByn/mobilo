@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-// Les variables doivent être chargées avant les styles qui les utilisent
-import './styles/variables.css'
+// Tailwind et le thème : global.css importe lui-même variables.css
 import './styles/global.css'
 import App from './App.tsx'
 

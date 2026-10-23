@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import type { FieldChangeEvent } from '../../types/form'
-import './FormField.css'
 
 interface FormFieldProps {
   // Sert à la fois d'id (pour le label) et de name (pour handleChange)
@@ -14,6 +13,10 @@ interface FormFieldProps {
   // Les <option> quand type vaut 'select'
   children?: ReactNode
 }
+
+// Une seule liste de classes pour les 3 sortes de champs que FormField peut afficher
+const FIELD_CLASSES =
+  'w-full min-h-control px-md py-sm bg-surface border-2 border-field-border rounded-field focus:border-action aria-invalid:border-error'
 
 export default function FormField({
   name,
@@ -35,14 +38,15 @@ export default function FormField({
     required,
     'aria-invalid': error !== undefined,
     'aria-describedby': error ? errorId : undefined,
+    className: FIELD_CLASSES,
   }
 
   return (
-    <div className="form-field">
-      <label htmlFor={name} className="form-field__label">
+    <div className="flex flex-col gap-xs">
+      <label htmlFor={name} className="font-semibold">
         {label}
         {required && (
-          <span className="form-field__required" aria-hidden="true">
+          <span className="text-error" aria-hidden="true">
             {' '}
             *
           </span>
@@ -56,7 +60,7 @@ export default function FormField({
       )}
 
       {error && (
-        <p id={errorId} className="form-field__error">
+        <p id={errorId} className="text-sm font-semibold text-error">
           {error}
         </p>
       )}

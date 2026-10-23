@@ -1,8 +1,7 @@
-import { Link } from 'react-router'
 import ProductGrid from '../components/products/ProductGrid'
+import Button from '../components/ui/Button'
 import EmptyState from '../components/ui/EmptyState'
 import { useWishlist } from '../context/WishlistContext'
-import './Wishlist.css'
 
 export default function Wishlist() {
   const { items, removeFromWishlist } = useWishlist()
@@ -10,10 +9,10 @@ export default function Wishlist() {
   return (
     <>
       <title>Ma wishlist | Mobilo</title>
-      <div className="wishlist__header">
-        <h1 className="wishlist__title">Ma wishlist</h1>
+      <div className="flex flex-wrap items-baseline gap-x-md gap-y-sm mb-lg">
+        <h1 className="text-2xl sm:text-3xl">Ma wishlist</h1>
         {items.length > 0 && (
-          <p className="wishlist__count">
+          <p className="text-muted">
             {items.length}{' '}
             {items.length > 1 ? 'produits sauvegardés' : 'produit sauvegardé'}
           </p>
@@ -22,9 +21,7 @@ export default function Wishlist() {
 
       {items.length === 0 ? (
         <EmptyState message="Votre wishlist est vide">
-          <Link to="/products" className="wishlist__link">
-            Découvrir le catalogue
-          </Link>
+          <Button to="/products">Découvrir le catalogue</Button>
         </EmptyState>
       ) : (
         <ProductGrid products={items} onRemove={removeFromWishlist} />

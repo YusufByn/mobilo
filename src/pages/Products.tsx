@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Pagination from '../components/products/Pagination'
 import ProductGrid from '../components/products/ProductGrid'
 import SearchForm from '../components/products/SearchForm'
+import Button from '../components/ui/Button'
 import EmptyState from '../components/ui/EmptyState'
 import ErrorMessage from '../components/ui/ErrorMessage'
 import Loader from '../components/ui/Loader'
@@ -10,7 +11,6 @@ import { useFilters } from '../context/FiltersContext'
 import { getProducts } from '../services/productService'
 import type { Product } from '../types/product'
 import { filterProducts } from '../utils/filterProducts'
-import './Products.css'
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([])
@@ -58,15 +58,19 @@ export default function Products() {
 
   // data-category : la couleur de la catégorie choisie colore toute la page (variables.css)
   return (
-    <div className="products" data-category={filters.category}>
+    <div data-category={filters.category}>
       <title>Catalogue | Mobilo</title>
-      <div className="products__header">
-        <h1 className="products__title">
+      {/* Bandeau à la couleur du rayon choisi : il change dès qu'on change de catégorie */}
+      <div className="flex flex-wrap items-baseline justify-between gap-x-md gap-y-xs mb-lg px-lg py-xl text-on-accent bg-accent rounded-tile transition-colors">
+        <h1 className="text-2xl sm:text-3xl">
           {category ? category.label : 'Tout le catalogue'}
         </h1>
         {/* aria-live : le nouveau nombre de résultats est annoncé à chaque filtre */}
         {showResults && (
-          <p className="products__count" aria-live="polite">
+          <p
+            className="font-display text-lg font-stretch-(--stretch-condensed) font-black"
+            aria-live="polite"
+          >
             {filteredProducts.length}{' '}
             {filteredProducts.length > 1
               ? 'modèles disponibles'
@@ -82,13 +86,7 @@ export default function Products() {
 
       {showResults && filteredProducts.length === 0 && (
         <EmptyState message="Aucun produit ne correspond à votre recherche">
-          <button
-            type="button"
-            className="products__reset"
-            onClick={resetFilters}
-          >
-            Réinitialiser les filtres
-          </button>
+          <Button onClick={resetFilters}>Réinitialiser les filtres</Button>
         </EmptyState>
       )}
       {showResults && filteredProducts.length > 0 && (
